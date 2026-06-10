@@ -6,8 +6,8 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-title                    : "赵文尧"
-title_en                 : "Wenyao Zhao | Homepage"
+title                    : "李婉华"
+title_en                 : "Wanhua Li | Homepage"
 description              : "AI芯片、算法与硬件协同设计"
 description_en           : "AI chips, algorithm-hardware co-design"
 repository               : "lionelZhaowy/lionelZhaowy.github.io"
