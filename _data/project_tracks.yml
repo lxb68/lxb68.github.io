@@ -1,0 +1,27 @@
+- key: scheduling
+  title: "智能调度与仿真"
+  title_en: "Intelligent Scheduling & Simulation"
+  icon: "⌁"
+  description: "面向物流、仓储与动力系统，以优化算法和离散事件仿真完成建模、求解与验证。"
+  description_en: "Optimization and discrete-event simulation for logistics, warehousing, and dynamic systems."
+
+- key: modeling
+  title: "机器学习与数据建模"
+  title_en: "Machine Learning & Data Modeling"
+  icon: "◇"
+  description: "围绕不平衡学习、分类、聚类与业务预测，构建可比较、可解释的数据分析流程。"
+  description_en: "Reproducible data analysis for imbalanced learning, classification, clustering, and prediction."
+
+- key: privacy
+  title: "隐私保护机器学习"
+  title_en: "Privacy-preserving Machine Learning"
+  icon: "▣"
+  description: "研究加密或安全计算环境下的模型训练与推理，兼顾正确性、效率与隐私边界。"
+  description_en: "Secure model training and inference with attention to correctness, efficiency, and privacy boundaries."
+
+- key: ai-engineering
+  title: "深度学习与 AI 工程"
+  title_en: "Deep Learning & AI Engineering"
+  icon: "△"
+  description: "覆盖点云 Transformer 的 GPU 训练优化，以及 Research Agent 从模型能力到网页产品的实现。"
+  description_en: "GPU training for point-cloud Transformers and end-to-end Research Agent web applications."

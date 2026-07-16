@@ -1,228 +1,89 @@
 ---
 permalink: /
 title: ""
-excerpt: ""
+excerpt: "李婉华的个人主页"
 author_profile: true
 lang: zh
-redirect_from: 
+redirect_from:
   - /about/
   - /about.html
 ---
 
-{% if site.google_scholar_stats_use_cdn %}
-{% assign gsDataBaseUrl = "https://cdn.jsdelivr.net/gh/" | append: site.repository | append: "@" %}
-{% else %}
-{% assign gsDataBaseUrl = "https://raw.githubusercontent.com/" | append: site.repository | append: "/" %}
-{% endif %}
-{% assign url = gsDataBaseUrl | append: "google-scholar-stats/gs_data_shieldsio.json" %}
+<div class="resume-hero" id="about-me">
+  <h1>你好，我是李婉华</h1>
+  <p>现就读于<strong>中国科学院大学</strong>电子信息（计算机）专业，关注智能优化、机器学习与 AI 系统工程。我的项目覆盖从问题建模、算法设计和仿真验证，到 GPU 模型训练与 Web 应用实现的完整流程。</p>
 
-<span class='anchor' id='about-me'></span>
+  <div class="focus-tags"><span>智能调度</span><span>机器学习</span><span>隐私计算</span><span>CUDA</span><span>AI Agent</span><span>Python / C++</span></div>
+</div>
 
-我目前就读于中国科学院半导体研究所，导师为刘力源研究员。本科毕业于合肥工业大学微电子学院。我的主要研究兴趣聚焦于处理器底层电路与AI算法的跨层级协同优化，具体研究领域包括: 
-- 边缘端AI推理芯片
-- 神经网络算法与硬件协同优化
-- 面向定制化处理器的AI模型编译器
-- 感算一体化智能视觉芯片
-
-在科研实践中，我深度参与了课题组 3 款自研ASIC处理器的算法设计和编译部署工作，并完成了 2 款基于FPGA的AI加速器设计与验证。迄今为止，已在相关领域发表(包括合作) 2 篇学术论文。
-<a href='https://scholar.google.com/citations?user=WMkMTb4AAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=引用"></a>。
-
-
-
-<span class='anchor' id='-xl'></span>
-
-# 🎓 学历
-- *2024.09 - 至今*, <a href="https://www.ucas.ac.cn//"><img class="svg" src="/images/CAS_logo.svg" width="20pt"></a> 中国科学院大学, <a href="https://www.semi.ac.cn///"><img class="svg" src="/images/SEMI_logo.png" width="20pt"></a> 中国科学院半导体研究所, 集成电路科学与工程, 北京, 硕博连读
-- *2020.09 - 2024.06*, <a href="https://www.hfut.edu.cn/"><img class="svg" src="/images/HFUT_logo.svg" width="23pt"></a> 合肥工业大学 微电子学院, 集成电路设计与集成系统, 安徽合肥, 本科
- 
-
-
-<span class='anchor' id='-xmjl'></span>
-
-# 🧩 项目经历
-
-<style>
-  /* 卡片整体样式 */
-  .project-card {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    margin-bottom: 25px;
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 1px solid #f0f0f0;
-  }
-  /* 鼠标悬停时的轻微抬起动画 */
-  .project-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.12);
-  }
-  /* 缩略图区域 */
-  .project-thumbnail {
-    flex-shrink: 0;
-    width: 200px;
-    margin-right: 20px;
-  }
- .project-thumbnail img,
- .project-thumbnail video {
-  width: 100%;
-  border-radius: 6px;
-  object-fit: cover;
-  aspect-ratio: 16/9; /* 强制 16:9 比例 */
-  border: 1px solid #eaeaea;
- }
-  /* 文字信息区域 */
-  .project-info {
-    flex-grow: 1;
-  }
-  .project-info h3 {
-    margin-top: 0;
-    margin-bottom: 8px;
-    font-size: 1.25em;
-  }
-  .project-info h3 a {
-    text-decoration: none;
-    color: #2c3e50;
-  }
-  .project-meta {
-    font-size: 0.85em;
-    color: #7f8c8d;
-    margin-bottom: 10px;
-  }
-  .project-summary {
-    font-size: 0.95em;
-    color: #444;
-    margin-bottom: 12px;
-    line-height: 1.6;
-  }
-  /* 底部标签区域 */
-  .project-tags span {
-    display: inline-block;
-    background: #f1f3f5;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 0.85em;
-    color: #495057;
-    margin-right: 8px;
-    margin-bottom: 6px;
-  }
-  /* 移动端适配 */
-  @media (max-width: 768px) {
-    .project-card {
-      flex-direction: column;
-    }
-    .project-thumbnail {
-      width: 100%;
-      margin-right: 0;
-      margin-bottom: 15px;
-    }
-  }
-</style>
-
-{% assign items = site.projects | sort: 'order' %}
-{% if items and items.size > 0 %}
-
-<div class="project-cards">
-  {% for p in items %}
-  <div class="project-card">
-    <div class="project-thumbnail">
-      {% if p.teaser %}
-        {% if p.teaser contains '.mp4' or p.teaser contains '.webm' %}
-          <video class="project-video-thumb" autoplay loop muted playsinline webkit-playsinline>
-            <source src="{{ p.teaser | relative_url }}?v=1" type="video/mp4">
-          </video>
-        {% else %}
-          <img src="{{ p.teaser | relative_url }}" alt="{{ p.title }}">
-        {% endif %}
-      {% else %}
-        <img src="{{ '/images/500x300.png' | relative_url }}" alt="Placeholder">
-      {% endif %}
-    </div>
-    <div class="project-info">
-      <h3><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
-      {% if p.period %}
-        <div class="project-meta">
-          <i class="fas fa-calendar-alt"></i> {{ p.period }}
-        </div>
-      {% endif %}
-      {% if p.summary %}
-        <div class="project-summary">{{ p.summary }}</div>
-      {% endif %}
-      <div class="project-tags">
-        {% if p.role %}<span><i class="fas fa-user-tag"></i> {{ p.role }}</span>{% endif %}
-        {% if p.tech %}<span><i class="fas fa-microchip"></i> {{ p.tech | join: ' / ' }}</span>{% endif %}
-      </div>
-    </div>
-  </div>
+<div class="capability-grid" aria-label="研究与项目方向">
+  {% for track in site.data.project_tracks %}
+  <a class="capability-card" href="{{ '/projects/' | relative_url }}#{{ track.key }}">
+    <span class="capability-icon" aria-hidden="true">{{ track.icon }}</span>
+    <h2>{{ track.title }}</h2>
+    <p>{{ track.description }}</p>
+  </a>
   {% endfor %}
 </div>
-{% else %}
-- 暂无（请在 `_projects/` 下新增项目文件）
-{% endif %}
 
+<span class="anchor" id="projects"></span>
+## 🧩 精选项目
 
-<span class='anchor' id='-lwzl'></span>
+{% assign items = site.projects | sort: 'order' %}
+<div class="resume-project-cards">
+  {% for p in items %}
+    {% if p.featured %}{% include project-card.html project=p %}{% endif %}
+  {% endfor %}
+</div>
 
-# 📝 论文专利
+<p class="projects-more"><a class="btn btn--primary" href="{{ '/projects/' | relative_url }}">按四条主线查看全部项目 →</a></p>
 
-### 英文
----
+<span class="anchor" id="education"></span>
+## 🎓 教育背景
 
-- Zhihao Zhang, Gaoming Du, Zhenmin Li, Qingran Kang, `Wenyao Zhao`, Xiaolei Wang. An energy-efficient dehazing neural network accelerator based on E2 AOD-Net[J]. Journal of Real-Time Image Processing, 2024, 21(6): 197. (JCR:Q2; IF:3.0) [[网页]](https://link.springer.com/article/10.1007/s11554-024-01574-x)[[pdf]](/images/project/202305-202309-MicroHFUT/s11554-024-01574-x.pdf)
+<div class="resume-grid">
+  <div class="resume-card">
+    <h3>中国科学院大学</h3>
+    <p><strong>电子信息（计算机）</strong></p>
+    <p>2024.09 - 至今｜GPA <span class="metric">3.78/4.0</span></p>
+    <p>核心课程：应用密码学（91）、GPU 架构与编程（95）、算法中的最优化方法与实现（94）、模式识别与机器学习（84）。</p>
+  </div>
+  <div class="resume-card">
+    <h3>湖南科技大学</h3>
+    <p><strong>信息与计算科学（B+）</strong></p>
+    <p>2020.09 - 2024.06｜GPA <span class="metric">3.68/4.0</span>｜专业排名 <span class="metric">4/132</span></p>
+    <p>数学分析（91）、高等代数（88）、概率论与数理统计（97）、数据结构（90）、操作系统（98）、C++ 面向对象程序设计（94）。</p>
+  </div>
+</div>
 
+<span class="anchor" id="work-experience"></span>
+## 💼 工作实习
 
+<div class="project-item">
+  <h3>小米科技有限责任公司</h3>
+  <p><strong>数据研发｜2025.02 - 2025.06</strong></p>
+  <ul>
+    <li><strong>自动化流程：</strong>重构报表生成项目与 SQL 文件管理流程，基于 Shell 脚本、飞书 API 和 AI 大模型设计并实现自动化工作流，减少人工干预，提升效率并降低人力成本。</li>
+    <li><strong>大模型应用：</strong>利用 Dify 平台与 RAG 技术构建数据分析、智能客服等 AI 工作流，推动业务智能化并优化应用效果。</li>
+    <li><strong>数据科学全流程：</strong>负责从数据获取、清洗、特征工程，到模型训练、评估及生产级部署的完整数据科学工作流。</li>
+    <li><strong>文本分类与语义分析：</strong>实现基于朴素贝叶斯模型的文本分类任务；利用 Word2Vec 为特定文本库生成词向量，支持相似文本检索。</li>
+    <li><strong>知识库建设：</strong>主导设计并搭建团队知识库系统，系统化沉淀技术文档与流程，提升新人入职效率及团队信息检索与复用能力。</li>
+  </ul>
+</div>
 
+<span class="anchor" id="honors"></span>
+## 🏅 荣誉奖项
 
-### 中文
----
+- **2025.06** 中国科学院大学校级三好学生
+- **2024.06** 湖南省优秀毕业生、国家励志奖学金
+- **2023** “正大杯”全国大学生市场调查与分析大赛省级二等奖（编程及数据处理）
+- **2023** 全国大学生电子商务“创新、创意及创业”挑战赛省级三等奖（队长）
+- **2022** 高教社杯全国大学生数学建模竞赛国家二等奖（队长）
+- **2022** 全国大学生数学竞赛 B 类省级一等奖
+- **2022** 湖南省大学生计算机程序设计竞赛省级三等奖
 
-- 宁欣, `赵文尧`, 宗易昕, 张玉贵, 陈灏, 周琦, 马骏骁. 神经网络压缩联合优化方法的研究综述[J]. 智能系统学报, 2024, 19(1): 3657. (核心期刊; IF:2.839; CCF-C) [[网页]](https://tis.hrbeu.edu.cn/oa/darticle.aspx?type=view&id=202306042)[[pdf]](/images/project/202207-202307-SEMI/NN_Compression_Survey.pdf)
+<span class="anchor" id="skills"></span>
+## 🛠️ 技能与经历
 
-
-
-
-### 专利
----
-- 暂无
-
-
-
-
-
-
-
-<span class='anchor' id='-ryjx'></span>
-
-# 🏅 荣誉奖项
-- *2025.06* 获得 中国科学院大学获`三好学生`
-- *2024.06* 获得 合肥工业大学`校长奖`、安徽省`优秀毕业生`
-- *2023.12* 获得 `国家奖学金`、校级`一等奖学金`、校级`优秀三好学生`
-- *2023.08* 获得 全国大学生集成电路创新创业大赛华中赛区`三等奖`
-- *2023.05* 获得 安徽省机器人大赛单片机与嵌入式赛道`一等奖`
-- *2022.12* 获得 合肥工业大学校级`一等奖学金`、校级`三好学生`
-- *2021.12* 获得 合肥工业大学校级`二等奖学金`、校级`三好学生`
-
-
-
-
-
-
-
-<span class='anchor' id='-xshy'></span>
-
-# 🏛️ 学术会议
-- 暂无
-
-
-
-
-
-
-
-<span class='anchor' id='-gzsx'></span>
-
-# 💻 工作实习
-- 暂无
+- **编程：** 熟练使用 C/C++、Python，掌握 Java 基础；熟悉常见算法与数据结构，了解 GPU 底层架构。
+- **综合能力：** 曾任湖南科技大学数学建模协会团支部副部长、班长，具备团队协作、表达沟通和快速学习能力。

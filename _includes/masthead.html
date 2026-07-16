@@ -29,7 +29,7 @@
 
           {% for link in nav %}
             <li class="masthead__menu-item">
-              <a href="{{ link.url | relative_url }}" {% if link.description %}title="{{ link.description }}"{% endif %}>{{ link.title }}</a>
+              <a href="{{ link.url | relative_url }}" target="_self" {% if link.description %}title="{{ link.description }}"{% endif %}>{{ link.title }}</a>
             </li>
           {% endfor %}
 
@@ -38,9 +38,9 @@
         {%- comment -%}Language switch fixed at the far right{%- endcomment -%}
         <div class="masthead__lang">
           {% if is_en %}
-            <a class="masthead__lang-link" href="{{ '/' | relative_url }}">中文</a>
+            <a class="masthead__lang-link" href="{{ '/' | relative_url }}" target="_self">中文</a>
           {% else %}
-            <a class="masthead__lang-link" href="{{ '/en/' | relative_url }}">English</a>
+            <a class="masthead__lang-link" href="{{ '/en/' | relative_url }}" target="_self">English</a>
           {% endif %}
         </div>
 

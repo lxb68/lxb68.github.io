@@ -8,9 +8,9 @@
 # Site Settings
 title                    : "李婉华"
 title_en                 : "Wanhua Li | Homepage"
-description              : "AI芯片、算法与硬件协同设计"
-description_en           : "AI chips, algorithm-hardware co-design"
-repository               : "lionelZhaowy/lionelZhaowy.github.io"
+description              : "李婉华的个人主页｜智能调度、机器学习、隐私计算与 AI 工程"
+description_en           : "Wanhua Li | Intelligent scheduling, machine learning, privacy, and AI engineering"
+repository               : "lxb68/lxb68.github.io"
 google_scholar_stats_use_cdn : false
 
 # google analytics
@@ -23,17 +23,17 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 
 # Site Author
 author:
-  name             : "赵文尧"
-  name_en          : "Wenyao Zhao"
-  avatar           : "images/Zhaowy_profile.jpg"
-  bio              : "中国科学院大学，中国科学院半导体研究所"
-  bio_en           : "University of Chinese Academy of Sciences (UCAS), Institute of Semiconductors, CAS"
+  name             : "李婉华"
+  name_en          : "Wanhua Li"
+  avatar           : "images/LiWanhua_profile.jpg"
+  bio              : "中国科学院大学｜电子信息（计算机）"
+  bio_en           : "UCAS | Electronic Information (Computer Science)"
   location         : "北京"
   location_en      : "Beijing, China"
   employer         : #"Hefei General Machinery Research Institute"
   pubmed           : 
-  googlescholar    : #"https://scholar.google.com/citations?user=WMkMTb4AAAAJ"
-  email            : "zhaowenyao@semi.ac.cn"
+  googlescholar    :
+  email            : "lwh430321@163.com"
   researchgate     : #"https://www.researchgate.net/profile/Jian-Tang-53"
   uri              : 
   bitbucket        :
@@ -42,7 +42,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "lionelZhaowy"
+  github           : "lxb68"
   google_plus      :
   keybase          :
   instagram        :
@@ -146,7 +146,7 @@ defaults:
       path: ""
       type: projects
     values:
-      layout: default
+      layout: project
       author_profile: true
       lang: zh
 
@@ -155,10 +155,9 @@ defaults:
       path: ""
       type: projects_en
     values:
-      layout: default
+      layout: project
       author_profile: true
       lang: en
-
 
 # Sass/SCSS
 sass:

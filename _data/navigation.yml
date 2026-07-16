@@ -3,20 +3,17 @@ main:
   - title: "简介"
     url: "/#about-me"
 
-  - title: "学历"
-    url: "/#-xl"
-
   - title: "项目经历"
-    url: "/#-xmjl"
+    url: "/projects/"
 
-  - title: "论文专利"
-    url: "/#-lwzl"
-
-  - title: "荣誉奖项"
-    url: "/#-ryjx"
-
-  - title: "学术会议"
-    url: "/#-xshy"
+  - title: "教育背景"
+    url: "/#education"
 
   - title: "工作实习"
-    url: "/#-gzsx"
+    url: "/#work-experience"
+
+  - title: "荣誉奖项"
+    url: "/#honors"
+
+  - title: "技能与经历"
+    url: "/#skills"

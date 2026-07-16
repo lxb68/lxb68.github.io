@@ -1,0 +1,20 @@
+{% assign p = include.project %}
+{% assign track_data = site.data.project_tracks | where: 'key', p.track | first %}
+<a class="resume-project-card" href="{{ p.url | relative_url }}" aria-label="{% if page.lang == 'en' %}View project details{% else %}查看项目详情{% endif %}：{{ p.title }}">
+  <div class="resume-project-visual resume-project-visual--{{ p.visual | default: p.track }}">
+    <span class="resume-project-icon" aria-hidden="true">{{ p.icon | default: '◇' }}</span>
+    <span class="resume-project-visual-label">{{ p.visual_label | default: p.track }}</span>
+  </div>
+  <div class="resume-project-info">
+    <div class="resume-project-kicker">{% if page.lang == 'en' %}{{ track_data.title_en }}{% else %}{{ track_data.title }}{% endif %}</div>
+    <h3>{{ p.title }}</h3>
+    {% if p.period and p.period != "时间待补充" and p.period != "To be added" and p.period != "Dates to be provided" %}
+      <div class="resume-project-meta">▣ {{ p.period }}</div>
+    {% endif %}
+    <p class="resume-project-summary">{{ p.summary }}</p>
+    <div class="resume-project-tags">
+      {% for tag in p.tech limit: 4 %}<span>{{ tag }}</span>{% endfor %}
+    </div>
+    <span class="resume-project-cta">{% if page.lang == 'en' %}View details{% else %}查看详情{% endif %} →</span>
+  </div>
+</a>

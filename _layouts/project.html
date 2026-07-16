@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+{% assign is_en = false %}
+{% if page.lang == 'en' %}{% assign is_en = true %}{% endif %}
+{% assign track_data = site.data.project_tracks | where: 'key', page.track | first %}
+
+<a class="project-back-link" href="{% if is_en %}{{ '/en/projects/' | relative_url }}{% else %}{{ '/projects/' | relative_url }}{% endif %}">← {% if is_en %}All projects{% else %}全部项目{% endif %}</a>
+
+<header class="project-detail-header">
+  <div class="project-detail-kicker">{% if is_en %}{{ track_data.title_en }}{% else %}{{ track_data.title }}{% endif %}</div>
+  <h1>{{ page.title }}</h1>
+  <p class="project-detail-summary">{{ page.summary }}</p>
+  <div class="project-detail-meta">
+    {% if page.period and page.period != "时间待补充" and page.period != "To be added" and page.period != "Dates to be provided" %}<span>{{ page.period }}</span>{% endif %}
+    {% if page.role %}<span>{{ page.role }}</span>{% endif %}
+    {% if page.status == 'draft' %}<span class="project-status">{% if is_en %}Details in progress{% else %}内容待补充{% endif %}</span>{% endif %}
+  </div>
+  <div class="project-detail-tags">{% for tag in page.tech %}<span>{{ tag }}</span>{% endfor %}</div>
+</header>
+
+{{ content }}
+
+<nav class="project-detail-footer" aria-label="{% if is_en %}Project navigation{% else %}项目导航{% endif %}">
+  <a href="{% if is_en %}{{ '/en/projects/' | relative_url }}{% else %}{{ '/projects/' | relative_url }}{% endif %}">← {% if is_en %}Back to all projects{% else %}返回全部项目{% endif %}</a>
+  <a href="{% if is_en %}{{ '/en/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}#projects">{% if is_en %}Back to homepage{% else %}返回首页精选{% endif %} ↑</a>
+</nav>

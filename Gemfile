@@ -1,5 +1,8 @@
 source "https://rubygems.org"
 
+# Load the local Ruby 3.4 compatibility shim before Bundler starts Jekyll.
+require_relative "_plugins/ruby34_compat"
+
 # Hello! This is where you manage which Jekyll version is used to run.
 # When you want to use a different version, change it below, save the
 # file and run `bundle install`. Run Jekyll with `bundle exec`, like so:
@@ -23,7 +26,8 @@ platforms :mingw, :x64_mingw, :mswin, :jruby do
   gem "tzinfo-data"
 end
 
-gem "wdm", "~> 0.1.0" if Gem.win_platform?
+# jekyll-watch already uses the cross-platform `listen` gem.
+# Do not add the obsolete native `wdm` extension: it does not build on Ruby 3.4.
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
@@ -35,3 +39,8 @@ end
 
 
 gem "webrick", "~> 1.7"
+
+# CSV stopped being a default gem in Ruby 3.4, while Jekyll 3.9 still requires it.
+gem "csv", "~> 3.3"
+gem "base64", "~> 0.2"
+gem "bigdecimal", "~> 3.1"
