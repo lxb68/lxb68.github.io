@@ -289,7 +289,29 @@
     &--modeling { background: linear-gradient(135deg, #fff7e9, #fce8bd); }
     &--privacy { background: linear-gradient(135deg, #f4efff, #e4dafc); }
     &--ai-engineering { background: linear-gradient(135deg, #edf5ff, #dce8f8); }
+
+    &--has-cover {
+      &::before,
+      &::after { display: none; }
+
+      .resume-project-visual-label {
+        color: #fff;
+        background: rgba(13, 34, 55, 0.82);
+      }
+    }
   }
+
+  .resume-project-cover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.25s ease;
+  }
+
+  .resume-project-card:hover .resume-project-cover { transform: scale(1.035); }
 
   .resume-project-icon {
     position: relative;
@@ -433,6 +455,58 @@
     color: #315879;
     background: #eef4fa;
     border-radius: 999px;
+  }
+
+  /* 项目详情图统一限制在舒适阅读尺寸，保留原图分辨率供高清屏显示。 */
+  .project-detail-content {
+    figure {
+      width: 100%;
+      max-width: 42rem;
+      margin-right: auto;
+      margin-left: auto;
+      justify-content: center;
+
+      > img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        max-height: 32rem;
+        margin-right: auto;
+        margin-left: auto;
+        object-fit: contain;
+      }
+
+      figcaption {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    figure.project-flow-figure { max-width: 34rem; }
+
+    figure.half {
+      max-width: 48rem;
+      gap: 1rem;
+
+      > img {
+        max-height: 24rem;
+        margin-right: 0;
+        margin-left: 0;
+
+        @include breakpoint($small) {
+          width: calc(50% - 0.5rem);
+        }
+      }
+    }
+  }
+
+  .project-flow-figure {
+    width: 100%;
+    max-width: 34rem;
+    margin-right: auto;
+    margin-left: auto;
+
+    figcaption { width: 100%; text-align: center; }
   }
 
   .project-back-link {

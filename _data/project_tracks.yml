@@ -6,11 +6,11 @@
   description_en: "Optimization and discrete-event simulation for logistics, warehousing, and dynamic systems."
 
 - key: modeling
-  title: "机器学习与数据建模"
-  title_en: "Machine Learning & Data Modeling"
+  title: "数学建模与数据分析"
+  title_en: "Mathematical Modeling & Data Analysis"
   icon: "◇"
-  description: "围绕不平衡学习、分类、聚类与业务预测，构建可比较、可解释的数据分析流程。"
-  description_en: "Reproducible data analysis for imbalanced learning, classification, clustering, and prediction."
+  description: "结合数学建模、智能优化与统计学习，完成复杂系统仿真、参数寻优和调查数据分析。"
+  description_en: "Mathematical modeling, intelligent optimization, and statistical learning for simulation, parameter search, and survey analysis."
 
 - key: privacy
   title: "隐私保护机器学习"

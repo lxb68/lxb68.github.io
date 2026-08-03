@@ -1,8 +1,12 @@
 {% assign p = include.project %}
 {% assign track_data = site.data.project_tracks | where: 'key', p.track | first %}
 <a class="resume-project-card" href="{{ p.url | relative_url }}" aria-label="{% if page.lang == 'en' %}View project details{% else %}查看项目详情{% endif %}：{{ p.title }}">
-  <div class="resume-project-visual resume-project-visual--{{ p.visual | default: p.track }}">
-    <span class="resume-project-icon" aria-hidden="true">{{ p.icon | default: '◇' }}</span>
+  <div class="resume-project-visual resume-project-visual--{{ p.visual | default: p.track }}{% if p.cover %} resume-project-visual--has-cover{% endif %}">
+    {% if p.cover %}
+      <img class="resume-project-cover" src="{{ p.cover | relative_url }}" alt="" loading="lazy">
+    {% else %}
+      <span class="resume-project-icon" aria-hidden="true">{{ p.icon | default: '◇' }}</span>
+    {% endif %}
     <span class="resume-project-visual-label">{{ p.visual_label | default: p.track }}</span>
   </div>
   <div class="resume-project-info">

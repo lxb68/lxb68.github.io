@@ -8,6 +8,7 @@ role: "Team Member; Team Lead in Year Two"
 visual: "logistics"
 icon: "🚚"
 visual_label: "NSGA-II · AnyLogic"
+cover: "/images/project/logistics-scheduling/AnyLogic-全国运输仿真.png"
 tech:
   - "Multi-objective Optimization"
   - "AnyLogic"

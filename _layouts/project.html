@@ -20,7 +20,9 @@ layout: default
   <div class="project-detail-tags">{% for tag in page.tech %}<span>{{ tag }}</span>{% endfor %}</div>
 </header>
 
-{{ content }}
+<div class="project-detail-content">
+  {{ content }}
+</div>
 
 <nav class="project-detail-footer" aria-label="{% if is_en %}Project navigation{% else %}项目导航{% endif %}">
   <a href="{% if is_en %}{{ '/en/projects/' | relative_url }}{% else %}{{ '/projects/' | relative_url }}{% endif %}">← {% if is_en %}Back to all projects{% else %}返回全部项目{% endif %}</a>
