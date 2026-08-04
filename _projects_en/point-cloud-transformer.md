@@ -9,6 +9,7 @@ status: "draft"
 visual: "ai-engineering"
 icon: "◈"
 visual_label: "CUDA · Triton"
+cover: "/images/project/cuda_inference/cover.jpg"
 tech: ["CUDA", "Triton", "PointNet", "3D MNIST", "PyTorch"]
 summary: "Trained PointNet for 3D MNIST classification and implemented equivalent inference paths in CUDA C++ and Triton to compare accuracy and end-to-end latency."
 ---

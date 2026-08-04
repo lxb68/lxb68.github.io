@@ -9,6 +9,7 @@ status: "draft"
 visual: "ai-engineering"
 icon: "◈"
 visual_label: "CUDA · Triton"
+cover: "/images/project/cuda_inference/cover.jpg"
 tech:
   - "CUDA"
   - "Triton"

@@ -13,6 +13,9 @@ description_en           : "Wanhua Li | Intelligent scheduling, machine learning
 repository               : "lxb68/lxb68.github.io"
 google_scholar_stats_use_cdn : false
 
+# Local preview server
+port                     : 5000
+
 # google analytics
 google_analytics_id      :  # get google_analytics_id from https://analytics.google.com/analytics/
 

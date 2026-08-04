@@ -5,37 +5,33 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // 【升级点】直接获取页面上所有的 video 标签，无论是首页缩略图还是详情页正文视频，统统接管！
-    const videos = document.querySelectorAll('video');
+    // 带原生 controls 的项目视频由用户手动控制；仅显式标记的视频参与视口自动播放。
+    const videos = document.querySelectorAll('video[data-autoplay-on-visible]');
 
-    if (!('IntersectionObserver' in window)) {
+    if (videos.length === 0 || !('IntersectionObserver' in window)) {
         return;
     }
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const video = entry.target;
-            
+
             if (entry.isIntersecting) {
-                // 进入视口，尝试播放
-                let playPromise = video.play();
+                const playPromise = video.play();
                 if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        // 忽略静音视频自动播放的 Promise 报错
+                    playPromise.catch(() => {
+                        video.dataset.autoplayState = 'blocked';
                     });
                 }
             } else {
-                // 离开视口，立即暂停，释放硬件解码器！
                 video.pause();
             }
         });
     }, {
-        // 阈值：视频有 10% 进入屏幕就开始触发播放
-        threshold: 0.1 
+        threshold: 0.1
     });
 
     videos.forEach(video => {
-        // 【升级点】给每个视频强制加上 playsinline 属性，防止某些流氓浏览器拦截
         video.setAttribute('playsinline', '');
         video.setAttribute('webkit-playsinline', '');
         observer.observe(video);

@@ -9,7 +9,7 @@ status: "complete"
 visual: "modeling"
 icon: "◎"
 visual_label: "RF · K-Means · SEM"
-cover: "/images/project/public-welfare-analysis/cover.svg"
+cover: "/images/project/public-welfare-analysis/cover.jpg"
 tech:
   - "随机森林"
   - "K-Means"

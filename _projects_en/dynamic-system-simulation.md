@@ -9,7 +9,7 @@ status: "complete"
 visual: "simulation"
 icon: "∿"
 visual_label: "Dynamics · SA"
-cover: "/images/project/dynamic-system-simulation/cover.svg"
+cover: "/images/project/dynamic-system-simulation/cover.png"
 tech:
   - "Dynamic Modeling"
   - "Finite Difference Method"

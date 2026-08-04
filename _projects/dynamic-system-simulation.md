@@ -9,7 +9,7 @@ status: "complete"
 visual: "simulation"
 icon: "∿"
 visual_label: "Dynamics · SA"
-cover: "/images/project/dynamic-system-simulation/cover.svg"
+cover: "/images/project/dynamic-system-simulation/cover.png"
 tech:
   - "动力学建模"
   - "有限差分法"

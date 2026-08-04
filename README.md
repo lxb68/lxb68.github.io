@@ -57,7 +57,7 @@ AcadHomepage
 1. 使用`git clone`将本项目克隆到本地。
 1. 安装Jekyll的构建环境，包括`Ruby`、`RubyGems`、`GCC`和`Make`。可参考[该教程](https://jekyllrb.com/docs/installation/#requirements)。
 1. 运行 `bash run_server.sh` 来启动Jekyll实时重载服务器。
-1. 在浏览器里打开 [http://127.0.0.1:4000](http://127.0.0.1:4000)。如果你修改了网页的源码，服务器会自动重新编译并刷新页面。
+1. 在浏览器里打开 [http://127.0.0.1:5000](http://127.0.0.1:5000)。如果你修改了网页的源码，服务器会自动重新编译并刷新页面。
 1. 当你修改完毕你的页面以后, 使用`git`命令，`commit`你的改动并`push`到你的github仓库中。
 
 # Acknowledges

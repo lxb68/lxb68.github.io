@@ -1,0 +1,8 @@
+<div class="project-demo">
+  <video controls muted loop playsinline preload="none"
+         poster="{{ include.poster | relative_url }}"
+         aria-label="{{ include.label }}">
+    <source src="{{ include.src | relative_url }}" type="video/webm">
+    <a href="{{ include.src | relative_url }}">{{ include.play_label | default: '查看演示' }}</a>
+  </video>
+</div>

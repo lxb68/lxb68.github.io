@@ -18,10 +18,7 @@ Research Agent is designed for research workflows that involve continuously find
 The system uses a decoupled web architecture: a Next.js, React, and TypeScript frontend provides the research workspace, while a FastAPI backend exposes literature, project, parsing, background-job, and research endpoints. Search providers, project storage, domain analysis, relation modeling, and answer generation remain separate modules so that each capability can evolve independently.
 
 <figure>
-  <video controls muted loop playsinline preload="metadata" poster="/images/project/research-agent/overview.png" width="100%">
-    <source src="/images/project/research-agent/overview.webm" type="video/webm">
-    Your browser does not support HTML5 video. The poster image shows the recorded workflow.
-  </video>
+  {% include project-demo.html src="/images/project/research-agent/overview.webm" poster="/images/project/research-agent/overview.png" label="Play the Research Agent product overview" play_label="Play demo" loading_label="Loading…" error_label="Loading failed — retry" %}
   <figcaption>Product overview: moving from literature discovery and project curation to domain modeling, knowledge graphs, and evidence-grounded conversations.</figcaption>
 </figure>
 
@@ -30,10 +27,7 @@ The system uses a decoupled web architecture: a Next.js, React, and TypeScript f
 The landing page provides direct entry points to research conversations, the dataset center, project knowledge spaces, and settings, with both light and dark themes. A persistent top-level navigation keeps these modules easy to reach without forcing users to rebuild their research context whenever they switch tasks.
 
 <figure>
-  <video controls muted loop playsinline preload="metadata" poster="/images/project/research-agent/home-navigation.png" width="100%">
-    <source src="/images/project/research-agent/home-navigation.webm" type="video/webm">
-    Your browser does not support HTML5 video. The poster image shows the recorded workflow.
-  </video>
+  {% include project-demo.html src="/images/project/research-agent/home-navigation.webm" poster="/images/project/research-agent/home-navigation.png" label="Play the Research Agent landing page and navigation demo" play_label="Play demo" loading_label="Loading…" error_label="Loading failed — retry" %}
   <figcaption>Landing page and global navigation, including module entry points and light/dark theme switching.</figcaption>
 </figure>
 
@@ -44,10 +38,7 @@ The dataset center combines online search and a local library in one workspace. 
 Search results and local PDFs can be added to a project. The ingestion pipeline extracts document text and structure, making each usable paper available to downstream domain analysis and retrieval-augmented generation. Search, parsing, and project membership are separate concerns, allowing external providers or parsers to change without coupling them to the core project workflow.
 
 <figure>
-  <video controls muted loop playsinline preload="metadata" poster="/images/project/research-agent/paper-search.png" width="100%">
-    <source src="/images/project/research-agent/paper-search.webm" type="video/webm">
-    Your browser does not support HTML5 video. The poster image shows the recorded workflow.
-  </video>
+  {% include project-demo.html src="/images/project/research-agent/paper-search.webm" poster="/images/project/research-agent/paper-search.png" label="Play the Research Agent paper search demo" play_label="Play demo" loading_label="Loading…" error_label="Loading failed — retry" %}
   <figcaption>Paper search with source, date, CCF-tier, and impact-factor filters plus per-source progress.</figcaption>
 </figure>
 
@@ -58,10 +49,7 @@ A project is the isolation boundary for analysis. Users can create a project, se
 The same boundary is enforced on the backend: project membership controls the trusted corpus consumed by domain analysis and retrieval. Papers and prior answers from unrelated projects cannot silently enter the evidence set.
 
 <figure>
-  <video controls muted loop playsinline preload="metadata" poster="/images/project/research-agent/project-literature.png" width="100%">
-    <source src="/images/project/research-agent/project-literature.webm" type="video/webm">
-    Your browser does not support HTML5 video. The poster image shows the recorded workflow.
-  </video>
+  {% include project-demo.html src="/images/project/research-agent/project-literature.webm" poster="/images/project/research-agent/project-literature.png" label="Play the Research Agent project literature demo" play_label="Play demo" loading_label="Loading…" error_label="Loading failed — retry" %}
   <figcaption>Project literature management: create a workspace, find papers, and explicitly apply the corpus used for analysis.</figcaption>
 </figure>
 
@@ -72,10 +60,7 @@ The same boundary is enforced on the backend: project membership controls the tr
 The literature map turns a paper collection into a browsable research trajectory. Papers can be filtered by year and inspected through summaries, topical tags, and key claims. Each claim can be traced to supporting text, making the view useful for comparing research tasks, methods, and experimental conclusions across papers.
 
 <figure>
-  <video controls muted loop playsinline preload="metadata" poster="/images/project/research-agent/literature-map.png" width="100%">
-    <source src="/images/project/research-agent/literature-map.webm" type="video/webm">
-    Your browser does not support HTML5 video. The poster image shows the recorded workflow.
-  </video>
+  {% include project-demo.html src="/images/project/research-agent/literature-map.webm" poster="/images/project/research-agent/literature-map.png" label="Play the Research Agent literature map demo" play_label="Play demo" loading_label="Loading…" error_label="Loading failed — retry" %}
   <figcaption>Literature map with year-based navigation, research facets, key claims, and supporting evidence.</figcaption>
 </figure>
 
@@ -84,10 +69,7 @@ The literature map turns a paper collection into a browsable research trajectory
 The domain tree summarizes the project corpus into a hierarchy of research topics while retaining links back to source chunks. Users can generate or rebuild a tree, edit and remove nodes, and inspect the original document outline and evidence for the selected topic. When no matching chunk exists, the interface reports the evidence gap instead of presenting an untraceable explanation.
 
 <figure>
-  <video controls muted loop playsinline preload="metadata" poster="/images/project/research-agent/domain-tree.png" width="100%">
-    <source src="/images/project/research-agent/domain-tree.webm" type="video/webm">
-    Your browser does not support HTML5 video. The poster image shows the recorded workflow.
-  </video>
+  {% include project-demo.html src="/images/project/research-agent/domain-tree.webm" poster="/images/project/research-agent/domain-tree.png" label="Play the Research Agent domain tree demo" play_label="Play demo" loading_label="Loading…" error_label="Loading failed — retry" %}
   <figcaption>Domain tree generation and editing with direct access to source outlines and document chunks.</figcaption>
 </figure>
 
@@ -96,10 +78,7 @@ The domain tree summarizes the project corpus into a hierarchy of research topic
 The knowledge graph organizes extracted entities, relations, and evidence into a filterable relation browser. Users can narrow results by keyword, entity type, relation type, research area, and linked paper. Relation cards expose direction, confidence, and evidence count; the detail panel provides entity attributes and source evidence. Editing controls let researchers correct automatically extracted entities and relations.
 
 <figure>
-  <video controls muted loop playsinline preload="metadata" poster="/images/project/research-agent/knowledge-graph.png" width="100%">
-    <source src="/images/project/research-agent/knowledge-graph.webm" type="video/webm">
-    Your browser does not support HTML5 video. The poster image shows the recorded workflow.
-  </video>
+  {% include project-demo.html src="/images/project/research-agent/knowledge-graph.webm" poster="/images/project/research-agent/knowledge-graph.png" label="Play the Research Agent knowledge graph demo" play_label="Play demo" loading_label="Loading…" error_label="Loading failed — retry" %}
   <figcaption>Knowledge-graph browsing with entity and relation filters, confidence, linked papers, and source evidence.</figcaption>
 </figure>
 
@@ -110,10 +89,7 @@ Research conversations operate within the active project and selected-paper scop
 The workspace also includes research memory, global preferences, and report export for longer-running investigations. Previous answers help resolve conversational references but are never treated as factual evidence by themselves, separating conversational continuity from source reliability.
 
 <figure>
-  <video controls muted loop playsinline preload="metadata" poster="/images/project/research-agent/research-chat.png" width="100%">
-    <source src="/images/project/research-agent/research-chat.webm" type="video/webm">
-    Your browser does not support HTML5 video. The poster image shows the recorded workflow.
-  </video>
+  {% include project-demo.html src="/images/project/research-agent/research-chat.webm" poster="/images/project/research-agent/research-chat.png" label="Play the Research Agent research chat demo" play_label="Play demo" loading_label="Loading…" error_label="Loading failed — retry" %}
   <figcaption>Research chat with numbered citations, retrieval coverage, paper provenance, and full-text evidence.</figcaption>
 </figure>
 

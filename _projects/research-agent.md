@@ -24,10 +24,7 @@ Research Agent 面向需要持续阅读、整理和比较大量论文的研究�
 系统采用前后端分离架构：前端以 Next.js、React 与 TypeScript 构建研究工作台，后端以 FastAPI 提供文献、项目、解析、后台任务和研究问答接口。功能模块按职责划分，搜索供应商、项目存储、领域分析、关系建模与问答管线可以独立演进，避免把全部研究逻辑耦合在单一 Agent 或页面组件中。
 
 <figure>
-  <video controls muted loop playsinline preload="metadata" poster="/images/project/research-agent/overview.png" width="100%">
-    <source src="/images/project/research-agent/overview.webm" type="video/webm">
-    当前浏览器不支持 HTML5 视频，可直接查看演示封面。
-  </video>
+  {% include project-demo.html src="/images/project/research-agent/overview.webm" poster="/images/project/research-agent/overview.png" label="播放 Research Agent 产品总览演示" %}
   <figcaption>产品总览：从文献检索与项目归档出发，进入领域树、文献地图、知识图谱和研究对话。</figcaption>
 </figure>
 
@@ -36,10 +33,7 @@ Research Agent 面向需要持续阅读、整理和比较大量论文的研究�
 首页提供研究对话、数据集中心、项目知识空间与设置四个入口，并支持亮色、暗色主题切换。进入应用后，顶部导航保持各模块的位置与状态一致，使用户能够在检索、知识组织和问答之间快速切换，而无需重新建立研究上下文。
 
 <figure>
-  <video controls muted loop playsinline preload="metadata" poster="/images/project/research-agent/home-navigation.png" width="100%">
-    <source src="/images/project/research-agent/home-navigation.webm" type="video/webm">
-    当前浏览器不支持 HTML5 视频，可直接查看演示封面。
-  </video>
+  {% include project-demo.html src="/images/project/research-agent/home-navigation.webm" poster="/images/project/research-agent/home-navigation.png" label="播放 Research Agent 首页与全局导航演示" %}
   <figcaption>首页与全局导航：展示模块入口、亮暗主题及从首页进入研究工作区的过程。</figcaption>
 </figure>
 
@@ -50,10 +44,7 @@ Research Agent 面向需要持续阅读、整理和比较大量论文的研究�
 用户可把检索结果或本地 PDF 纳入项目。解析环节负责提取论文正文与结构信息，并将可用文献转换为后续领域分析和检索增强问答能够消费的语料。搜索、解析与项目归档分别封装，既便于替换外部数据源，也避免解析失败阻塞基础文献管理。
 
 <figure>
-  <video controls muted loop playsinline preload="metadata" poster="/images/project/research-agent/paper-search.png" width="100%">
-    <source src="/images/project/research-agent/paper-search.webm" type="video/webm">
-    当前浏览器不支持 HTML5 视频，可直接查看演示封面。
-  </video>
+  {% include project-demo.html src="/images/project/research-agent/paper-search.webm" poster="/images/project/research-agent/paper-search.png" label="播放 Research Agent 论文检索演示" %}
   <figcaption>论文检索：组合数据源、时间、CCF 等级与影响因子条件，并查看分来源检索进度。</figcaption>
 </figure>
 
@@ -64,10 +55,7 @@ Research Agent 面向需要持续阅读、整理和比较大量论文的研究�
 这一边界不仅存在于界面层：后端由项目仓储维护论文成员关系，领域分析和研究检索只消费当前项目的可信语料范围，避免其他项目的论文或历史回答意外混入证据集合。
 
 <figure>
-  <video controls muted loop playsinline preload="metadata" poster="/images/project/research-agent/project-literature.png" width="100%">
-    <source src="/images/project/research-agent/project-literature.webm" type="video/webm">
-    当前浏览器不支持 HTML5 视频，可直接查看演示封面。
-  </video>
+  {% include project-demo.html src="/images/project/research-agent/project-literature.webm" poster="/images/project/research-agent/project-literature.png" label="播放 Research Agent 项目文献管理演示" %}
   <figcaption>项目文献管理：创建研究项目、检索项目论文，并显式应用参与分析的文献范围。</figcaption>
 </figure>
 
@@ -78,10 +66,7 @@ Research Agent 面向需要持续阅读、整理和比较大量论文的研究�
 文献地图把项目论文组织为可浏览的研究脉络。用户可按年份筛选论文，查看每篇工作的摘要、主题标签和核心声明，并继续展开与声明关联的原文证据。相比仅按文件名维护 PDF，这一视图更适合横向比较研究任务、方法与实验结论。
 
 <figure>
-  <video controls muted loop playsinline preload="metadata" poster="/images/project/research-agent/literature-map.png" width="100%">
-    <source src="/images/project/research-agent/literature-map.webm" type="video/webm">
-    当前浏览器不支持 HTML5 视频，可直接查看演示封面。
-  </video>
+  {% include project-demo.html src="/images/project/research-agent/literature-map.webm" poster="/images/project/research-agent/literature-map.png" label="播放 Research Agent 文献地图演示" %}
   <figcaption>文献地图：按年份浏览论文脉络，查看研究标签、核心声明与对应证据。</figcaption>
 </figure>
 
@@ -90,10 +75,7 @@ Research Agent 面向需要持续阅读、整理和比较大量论文的研究�
 领域树把项目语料归纳为分层研究主题，并保留从分类标签回到原始文献分块的入口。用户可以触发模型生成或重建领域树，也可以编辑、删除节点；选中节点后可在侧栏核对对应原文目录与证据。当证据不足时，系统明确提示缺少匹配分块，而不是生成无法追溯的说明。
 
 <figure>
-  <video controls muted loop playsinline preload="metadata" poster="/images/project/research-agent/domain-tree.png" width="100%">
-    <source src="/images/project/research-agent/domain-tree.webm" type="video/webm">
-    当前浏览器不支持 HTML5 视频，可直接查看演示封面。
-  </video>
+  {% include project-demo.html src="/images/project/research-agent/domain-tree.webm" poster="/images/project/research-agent/domain-tree.png" label="播放 Research Agent 领域树演示" %}
   <figcaption>领域树：生成和编辑分层主题，并从节点回溯原始目录及文献分块。</figcaption>
 </figure>
 
@@ -102,10 +84,7 @@ Research Agent 面向需要持续阅读、整理和比较大量论文的研究�
 知识图谱把论文中的实体、关系与证据组织成可筛选的关系浏览器。用户可以按关键词、实体类型、关系类型、研究领域和关联文献缩小范围；关系列表展示关系方向、置信度与证据数量，详情面板支持继续核对实体属性和原文证据。关系编辑与删除入口使自动抽取结果能够由研究者校正。
 
 <figure>
-  <video controls muted loop playsinline preload="metadata" poster="/images/project/research-agent/knowledge-graph.png" width="100%">
-    <source src="/images/project/research-agent/knowledge-graph.webm" type="video/webm">
-    当前浏览器不支持 HTML5 视频，可直接查看演示封面。
-  </video>
+  {% include project-demo.html src="/images/project/research-agent/knowledge-graph.webm" poster="/images/project/research-agent/knowledge-graph.png" label="播放 Research Agent 知识图谱演示" %}
   <figcaption>知识图谱：筛选实体与关系，查看置信度、关联文献和支持关系的原文证据。</figcaption>
 </figure>
 
@@ -116,10 +95,7 @@ Research Agent 面向需要持续阅读、整理和比较大量论文的研究�
 对话区还支持研究记忆、全局偏好与报告导出，适合在同一主题下继续追问和沉淀阶段性结论。历史回答只用于解析上下文，不会自动作为新的事实证据，从而把“对话连续性”与“证据可信度”分开处理。
 
 <figure>
-  <video controls muted loop playsinline preload="metadata" poster="/images/project/research-agent/research-chat.png" width="100%">
-    <source src="/images/project/research-agent/research-chat.webm" type="video/webm">
-    当前浏览器不支持 HTML5 视频，可直接查看演示封面。
-  </video>
+  {% include project-demo.html src="/images/project/research-agent/research-chat.webm" poster="/images/project/research-agent/research-chat.png" label="播放 Research Agent 研究对话演示" %}
   <figcaption>研究对话：生成带编号引用的综述，并在侧栏核对检索覆盖、论文来源与全文证据。</figcaption>
 </figure>
 

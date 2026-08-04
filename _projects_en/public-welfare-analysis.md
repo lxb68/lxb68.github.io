@@ -9,7 +9,7 @@ status: "complete"
 visual: "modeling"
 icon: "◎"
 visual_label: "RF · K-Means · SEM"
-cover: "/images/project/public-welfare-analysis/cover.svg"
+cover: "/images/project/public-welfare-analysis/cover.jpg"
 tech: ["Random Forest", "K-Means", "Structural Equation Modeling", "SPSS / AMOS"]
 summary: "Built an end-to-end survey and modeling workflow from 758 valid responses to identify student segments and explain the factors influencing participation in public-welfare activities."
 ---
