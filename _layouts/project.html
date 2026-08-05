@@ -6,7 +6,7 @@ layout: default
 {% if page.lang == 'en' %}{% assign is_en = true %}{% endif %}
 {% assign track_data = site.data.project_tracks | where: 'key', page.track | first %}
 
-<a class="project-back-link" href="{% if is_en %}{{ '/en/projects/' | relative_url }}{% else %}{{ '/projects/' | relative_url }}{% endif %}">← {% if is_en %}All projects{% else %}全部项目{% endif %}</a>
+<a class="project-back-link" href="{% if is_en %}{{ '/en/projects/' | relative_url }}{% else %}{{ '/projects/' | relative_url }}{% endif %}" target="_self">← {% if is_en %}All projects{% else %}全部项目{% endif %}</a>
 
 <header class="project-detail-header">
   <div class="project-detail-kicker">{% if is_en %}{{ track_data.title_en }}{% else %}{{ track_data.title }}{% endif %}</div>
@@ -25,6 +25,6 @@ layout: default
 </div>
 
 <nav class="project-detail-footer" aria-label="{% if is_en %}Project navigation{% else %}项目导航{% endif %}">
-  <a href="{% if is_en %}{{ '/en/projects/' | relative_url }}{% else %}{{ '/projects/' | relative_url }}{% endif %}">← {% if is_en %}Back to all projects{% else %}返回全部项目{% endif %}</a>
-  <a href="{% if is_en %}{{ '/en/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}#projects">{% if is_en %}Back to homepage{% else %}返回首页精选{% endif %} ↑</a>
+  <a href="{% if is_en %}{{ '/en/projects/' | relative_url }}{% else %}{{ '/projects/' | relative_url }}{% endif %}" target="_self">← {% if is_en %}Back to all projects{% else %}返回全部项目{% endif %}</a>
+  <a href="{% if is_en %}{{ '/en/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}#projects" target="_self">{% if is_en %}Back to homepage{% else %}返回首页精选{% endif %} ↑</a>
 </nav>

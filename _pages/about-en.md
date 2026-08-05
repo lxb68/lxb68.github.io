@@ -18,7 +18,7 @@ I am currently seeking opportunities in privacy-preserving machine learning. Con
 
 <div class="capability-grid" aria-label="Research and project areas">
   {% for track in site.data.project_tracks %}
-  <a class="capability-card" href="{{ '/en/projects/' | relative_url }}#{{ track.key }}">
+  <a class="capability-card" href="{{ '/en/projects/' | relative_url }}#{{ track.key }}" target="_self">
     <span class="capability-icon" aria-hidden="true">{{ track.icon }}</span>
     <h2>{{ track.title_en }}</h2>
     <p>{{ track.description_en }}</p>
@@ -36,7 +36,7 @@ I am currently seeking opportunities in privacy-preserving machine learning. Con
   {% endfor %}
 </div>
 
-<p class="projects-more"><a class="btn btn--primary" href="{{ '/en/projects/' | relative_url }}">Explore all projects by track →</a></p>
+<p class="projects-more"><a class="btn btn--primary" href="{{ '/en/projects/' | relative_url }}" target="_self">Explore all projects by track →</a></p>
 
 <span class="anchor" id="education"></span>
 ## 🎓 Education

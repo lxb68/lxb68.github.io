@@ -18,7 +18,7 @@ redirect_from:
 
 <div class="capability-grid" aria-label="研究与项目方向">
   {% for track in site.data.project_tracks %}
-  <a class="capability-card" href="{{ '/projects/' | relative_url }}#{{ track.key }}">
+  <a class="capability-card" href="{{ '/projects/' | relative_url }}#{{ track.key }}" target="_self">
     <span class="capability-icon" aria-hidden="true">{{ track.icon }}</span>
     <h2>{{ track.title }}</h2>
     <p>{{ track.description }}</p>
@@ -36,7 +36,7 @@ redirect_from:
   {% endfor %}
 </div>
 
-<p class="projects-more"><a class="btn btn--primary" href="{{ '/projects/' | relative_url }}">按四条主线查看全部项目 →</a></p>
+<p class="projects-more"><a class="btn btn--primary" href="{{ '/projects/' | relative_url }}" target="_self">按四条主线查看全部项目 →</a></p>
 
 <span class="anchor" id="education"></span>
 ## 🎓 教育背景
