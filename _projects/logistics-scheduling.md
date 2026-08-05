@@ -3,8 +3,8 @@ title: "基于 NSGA-II 与 AnyLogic 的物流调度仿真"
 order: 4
 track: "scheduling"
 featured: true
-period: "时间待补充"
-role: "项目成员，第二年任队长"
+period: "2021-2023"
+role: "核心成员，第二年任队长"
 visual: "logistics"
 icon: "🚚"
 visual_label: "NSGA-II · AnyLogic"
@@ -22,6 +22,27 @@ summary: "面向开放式车辆路径与在线派单场景，构建兼顾总车�
 本项目源于与上海钢联物流股份有限公司开展的国家级产学研合作。项目面向货物自动配载与在线调度场景，研究如何在满足车货匹配、载重、工作时间和最大里程等业务约束的前提下，减少运输总车次与总行驶距离，并兼顾配送效率和调度公平性。
 
 项目采用“**优化算法生成方案—AnyLogic 仿真验证—管理人员实时调整**”的技术路线：先通过多目标优化算法完成车货匹配与自动派单，再在仿真环境中评估车辆等待、装卸点负载和人工干预等因素对调度效果的影响，从而降低新方案直接进入生产环境的试错成本。
+
+## 完整项目演示
+
+<div class="project-demo">
+  <iframe
+    src="https://player.bilibili.com/player.html?bvid=BV1xR4y1G78M&amp;autoplay=1&amp;muted=1"
+    title="基于 NSGA-II 与 AnyLogic 的物流调度仿真完整演示"
+    scrolling="no"
+    frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<p class="project-video-link">
+  <a href="https://www.bilibili.com/video/BV1xR4y1G78M?t=33.7"
+     target="_blank"
+     rel="noopener noreferrer">
+    在哔哩哔哩观看完整项目演示 →
+  </a>
+</p>
 
 ## 业务痛点
 

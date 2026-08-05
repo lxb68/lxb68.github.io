@@ -71,7 +71,7 @@ summary: "面向波浪能装置的能量转换效率问题，建立浮子—振�
 
 前两种情形在约 50 代时已找到文档记录的最优解；耦合模型约在 80 代附近趋于最优。常数阻尼情形下，算法的最优功率随迭代快速提升并保持稳定。
 
-<figure class="project-flow-figure">
+<figure class="project-flow-figure" style="max-width: 26rem;">
   <img src="/images/project/dynamic-system-simulation/constant-damping-convergence.jpeg" alt="常数直线阻尼情形下最大输出功率随迭代次数变化的曲线" loading="lazy">
   <figcaption>常数直线阻尼优化的收敛过程，最优平均输出功率稳定在约 240.3179 W。</figcaption>
 </figure>

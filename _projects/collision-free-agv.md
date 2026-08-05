@@ -3,8 +3,8 @@ title: "基于多目标优化的多 AGV 无碰撞调度"
 order: 5
 track: "scheduling"
 featured: false
-period: "时间待补充"
-role: "项目成员"
+period: "2023"
+role: "核心成员"
 visual: "agv"
 icon: "🤖"
 visual_label: "GA* · A* · CAT"

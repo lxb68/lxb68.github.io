@@ -4,6 +4,8 @@ order: 1
 track: "ai-engineering"
 featured: true
 visual: "ai-engineering"
+period: "2026"
+role: "独立开发"
 icon: "✦"
 visual_label: "Research · RAG"
 cover: "/images/project/research-agent/overview.png"
