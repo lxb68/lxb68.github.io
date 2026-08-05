@@ -38,9 +38,13 @@ summary: "面向长株潭高校大学生，以 758 份有效问卷构建从抽�
 
 正式量表的 Cronbach's Alpha 为 **0.913**，KMO 为 **0.937**，Bartlett 球形检验显著，表明数据具有较好的内部一致性，并适合继续开展主成分分析和因子分析。
 
-<figure class="half">
-  <img src="/images/project/public-welfare-analysis/participation-overview.jpeg" alt="大学生公益认知与参与现状统计图" loading="lazy">
-  <img src="/images/project/public-welfare-analysis/participation-reasons.jpeg" alt="大学生参与公益活动原因分布图" loading="lazy">
+<figure class="half welfare-participation">
+  <img src="/images/project/public-welfare-analysis/participation-overview.jpeg"
+       alt="大学生公益认知与参与现状统计图"
+       loading="lazy">
+  <img src="/images/project/public-welfare-analysis/participation-reasons.jpeg"
+       alt="大学生参与公益活动原因分布图"
+       loading="lazy">
   <figcaption>调研结果可视化：左图呈现公益认知与参与现状，右图展示大学生参与公益活动的主要动因。</figcaption>
 </figure>
 
@@ -63,7 +67,7 @@ summary: "面向长株潭高校大学生，以 758 份有效问卷构建从抽�
 
 ### K-Means 群体划分
 
-<figure class="half">
+<figure class="half welfare-participation">
   <img src="/images/project/public-welfare-analysis/kmeans-process.png" alt="K-Means 聚类中心迭代过程示意图" loading="lazy">
   <img src="/images/project/public-welfare-analysis/kmeans-clusters.png" alt="大学生公益参与群体聚类结果分布图" loading="lazy">
   <figcaption>K-Means 分析：通过“分配样本—更新中心—重新分配”的迭代过程，将受访者划分为四类公益参与群体。</figcaption>
@@ -71,9 +75,13 @@ summary: "面向长株潭高校大学生，以 758 份有效问卷构建从抽�
 
 ### 影响机制建模
 
-<figure class="project-flow-figure">
-  <img src="/images/project/public-welfare-analysis/impact-model.png" alt="公益态度、期望收获、公益动机、公益认知和公益意愿之间的假设路径模型" loading="lazy">
-  <figcaption>参与公益意愿影响因素概念模型：以五类潜变量组织待检验的关系路径。</figcaption>
+<figure class="project-flow-figure" style="max-width: 26rem;">
+  <img src="/images/project/public-welfare-analysis/impact-model.png"
+       alt="公益态度、期望收获、公益动机、公益认知和公益意愿之间的假设路径模型"
+       loading="lazy">
+  <figcaption>
+    参与公益意愿影响因素概念模型：以五类潜变量组织待检验的关系路径。
+  </figcaption>
 </figure>
 
 <figure>

@@ -23,7 +23,7 @@ summary: "面向无人仓多 AGV 协同作业，联合优化订单与托盘分�
 
 仓库被抽象为 **32 × 22 双向栅格地图**，包含路径、储位、保留、障碍、拣选工位、补货位和空托盘回收位七类节点。实验场景包含 **148 个托盘、36 个储位分组和 20 台 AGV**。项目目标是在保证订单完整执行和路径安全的前提下，缩短总运输距离与运输周期，提高 AGV 时间利用率，并均衡拣选工位负载。
 
-<figure>
+<figure class="project-flow-figure" style="max-width: 26rem;">
   <img src="/images/project/collision-free-agv/warehouse-layout.png" alt="包含储位、拣选工位、保留节点与回收节点的无人仓栅格布局">
   <figcaption>无人仓栅格布局：通过分区、加宽通道和设置保留节点，为多 AGV 并发运输提供避让空间。</figcaption>
 </figure>
@@ -75,7 +75,7 @@ summary: "面向无人仓多 AGV 协同作业，联合优化订单与托盘分�
 
 检测到风险后，系统依次尝试等待避让、退避等待、备用路线、低拥堵路线和区域外围路线；仅当前述局部策略都无法得到安全路径时，才更换任务执行 AGV。该优先级把局部路径修复与全局任务重分配解耦，减少一次冲突对整体调度方案的扰动。
 
-<figure>
+<figure class="project-flow-figure" style="max-width: 26rem;">
   <img src="/images/project/collision-free-agv/collision-avoidance.png" alt="两台 AGV 发生相向冲突时，其中一台前往保留节点避让的路线">
   <figcaption>保留节点避让：AGV 16 在检测到与 AGV 13 的相向冲突后先进入保留节点，待冲突解除再继续执行取货任务。</figcaption>
 </figure>
@@ -92,7 +92,7 @@ summary: "面向无人仓多 AGV 协同作业，联合优化订单与托盘分�
 
 在 20 台 AGV 的对比中，传统 GA 和 PSO 的平均碰撞点分别为 180.0 和 206.1，GA* 将碰撞点降至 0。其代价是运输距离和等待时间有所增加，说明算法主动用有限绕行换取了路径安全；这也是多目标调度中安全性与效率之间的核心权衡。
 
-<figure>
+<figure class="project-flow-figure" >
   <img src="/images/project/collision-free-agv/algorithm-comparison.png" alt="传统遗传算法、粒子群算法与改进遗传算法在不同 AGV 数量下的平均运输距离比较">
   <figcaption>算法对比：随着 AGV 数量增加，单车平均运输距离整体下降；GA* 通过主动避障承担一定绕行成本。</figcaption>
 </figure>

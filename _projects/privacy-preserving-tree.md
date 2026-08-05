@@ -52,7 +52,7 @@ summary: "提出 P³RF 非交互式密文随机森林推理框架，以低阶路
 
 保证每个类别的累计误差不超过 N/2，客户端对解密结果除以 N 并四舍五入即可恢复精确的组内票数。PIPS 参数选择算法会遍历候选阶数与缩放区间，寻找满足该约束的最低阶多项式，并据此动态确定安全分组大小。
 
-<figure>
+<figure class="project-flow-figure" >
   <img src="/images/project/privacy-preserving-random-forest/polynomial-parameters.png" alt="不同树深度下自动选择的路径指示多项式阶数以及最小和最大逼近误差" loading="lazy">
   <figcaption>PIPS 参数选择结果：随着路径分数域随树深度扩展，算法自适应提高多项式阶数，将非零路径上的最坏逼近误差稳定控制在约 10⁻⁵ 以内。</figcaption>
 </figure>

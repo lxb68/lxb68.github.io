@@ -516,6 +516,36 @@
         }
       }
     }
+
+    figure.half.welfare-participation {
+      display: flex;
+      align-items: center;      // 两张图垂直居中对齐
+      justify-content: center;  // 两张图整体水平居中
+      flex-wrap: wrap;
+      gap: 1rem;
+      max-width: 48rem;
+      margin-right: auto;
+      margin-left: auto;
+
+      > img {
+        margin: 0;
+        object-fit: contain;
+      }
+
+      figcaption {
+        flex: 0 0 100%;
+        text-align: center;
+      }
+      @include breakpoint($small) {
+        > img:first-child {
+          width: calc(58% - 0.5rem);
+        }
+
+        > img:nth-child(2) {
+          width: calc(42% - 0.5rem);
+        }
+      }
+    }
   }
 
   .project-flow-figure {
