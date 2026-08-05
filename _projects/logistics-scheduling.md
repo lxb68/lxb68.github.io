@@ -1,6 +1,6 @@
 ---
 title: "基于 NSGA-II 与 AnyLogic 的物流调度仿真"
-order: 1
+order: 4
 track: "scheduling"
 featured: true
 period: "时间待补充"

@@ -1,14 +1,14 @@
 ---
 title: "基于多目标优化的多 AGV 无碰撞调度"
-order: 2
+order: 5
 track: "scheduling"
-featured: true
+featured: false
 period: "时间待补充"
 role: "项目成员"
 visual: "agv"
 icon: "🤖"
 visual_label: "GA* · A* · CAT"
-cover: "/images/project/collision-free-agv/warehouse-layout.png"
+cover: "/images/project/collision-free-agv/collision-avoidance.png"
 tech:
   - "多目标优化"
   - "改进遗传算法"

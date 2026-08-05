@@ -1,6 +1,6 @@
 ---
 title: "P³RF：基于同态加密的隐私保护随机森林推理"
-order: 4
+order: 3
 track: "privacy"
 featured: true
 period: "2026"

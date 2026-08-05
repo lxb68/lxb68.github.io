@@ -1,6 +1,6 @@
 ---
 title: "Research Agent 智能研究助手"
-order: 8
+order: 1
 track: "ai-engineering"
 featured: true
 visual: "ai-engineering"

@@ -1,16 +1,9 @@
-- key: scheduling
-  title: "智能调度与仿真"
-  title_en: "Intelligent Scheduling & Simulation"
-  icon: "⌁"
-  description: "面向物流、仓储与动力系统，以优化算法和离散事件仿真完成建模、求解与验证。"
-  description_en: "Optimization and discrete-event simulation for logistics, warehousing, and dynamic systems."
-
-- key: modeling
-  title: "数学建模与数据分析"
-  title_en: "Mathematical Modeling & Data Analysis"
-  icon: "◇"
-  description: "结合数学建模、智能优化与统计学习，完成复杂系统仿真、参数寻优和调查数据分析。"
-  description_en: "Mathematical modeling, intelligent optimization, and statistical learning for simulation, parameter search, and survey analysis."
+- key: ai-engineering
+  title: "深度学习与 AI 工程"
+  title_en: "Deep Learning & AI Engineering"
+  icon: "△"
+  description: "覆盖点云 Transformer 的 GPU 训练优化，以及 Research Agent 从模型能力到网页产品的实现。"
+  description_en: "GPU training for point-cloud Transformers and end-to-end Research Agent web applications."
 
 - key: privacy
   title: "隐私保护机器学习"
@@ -19,9 +12,18 @@
   description: "研究加密或安全计算环境下的模型训练与推理，兼顾正确性、效率与隐私边界。"
   description_en: "Secure model training and inference with attention to correctness, efficiency, and privacy boundaries."
 
-- key: ai-engineering
-  title: "深度学习与 AI 工程"
-  title_en: "Deep Learning & AI Engineering"
-  icon: "△"
-  description: "覆盖点云 Transformer 的 GPU 训练优化，以及 Research Agent 从模型能力到网页产品的实现。"
-  description_en: "GPU training for point-cloud Transformers and end-to-end Research Agent web applications."
+
+- key: scheduling
+  title: "智能调度与仿真"
+  title_en: "Intelligent Scheduling & Simulation"
+  icon: "⌁"
+  description: "面向物流、仓储与动力系统，以优化算法和离散事件仿真完成建模、求解与验证。"
+  description_en: "Optimization and discrete-event simulation for logistics, warehousing, and dynamic systems."
+
+
+- key: modeling
+  title: "数学建模与数据分析"
+  title_en: "Mathematical Modeling & Data Analysis"
+  icon: "◇"
+  description: "结合数学建模、智能优化与统计学习，完成复杂系统仿真、参数寻优和调查数据分析。"
+  description_en: "Mathematical modeling, intelligent optimization, and statistical learning for simulation, parameter search, and survey analysis."

@@ -8,8 +8,8 @@
 # Site Settings
 title                    : "李婉华"
 title_en                 : "Wanhua Li | Homepage"
-description              : "李婉华的个人主页｜智能调度、机器学习、隐私计算与 AI 工程"
-description_en           : "Wanhua Li | Intelligent scheduling, machine learning, privacy, and AI engineering"
+description              : "AI 工程、机器学习、隐私计算与智能调度 "
+description_en           : "AI engineering, machine learning, privacy, and Intelligent scheduling"
 repository               : "lxb68/lxb68.github.io"
 google_scholar_stats_use_cdn : false
 

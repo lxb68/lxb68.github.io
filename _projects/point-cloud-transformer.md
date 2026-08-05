@@ -1,6 +1,6 @@
 ---
 title: "基于 CUDA 与 Triton 的 PointNet 推理实现"
-order: 7
+order: 2
 track: "ai-engineering"
 featured: true
 period: "时间待补充"
