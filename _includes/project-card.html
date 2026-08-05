@@ -13,7 +13,15 @@
     <div class="resume-project-kicker">{% if page.lang == 'en' %}{{ track_data.title_en }}{% else %}{{ track_data.title }}{% endif %}</div>
     <h3>{{ p.title }}</h3>
     {% if p.period and p.period != "时间待补充" and p.period != "To be added" and p.period != "Dates to be provided" %}
-      <div class="resume-project-meta">▣ {{ p.period }}</div>
+      <div class="resume-project-meta">
+        {% if p.period %}
+          <span>▣ {{ p.period }}</span>
+        {% endif %}
+
+        {% if p.role %}
+          <span>{{ p.role }}</span>
+        {% endif %}
+      </div>
     {% endif %}
     <p class="resume-project-summary">{{ p.summary }}</p>
     <div class="resume-project-tags">
