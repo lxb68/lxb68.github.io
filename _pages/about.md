@@ -27,7 +27,7 @@ redirect_from:
 </div>
 
 <span class="anchor" id="projects"></span>
-## 🧩 精选项目
+## ✨ 代表项目
 
 {% assign items = site.projects | sort: 'order' %}
 <div class="resume-project-cards">

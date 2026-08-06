@@ -1,10 +1,11 @@
 {% if page.author and site.data.authors[page.author] %}
-  {% assign author = site.data.authors[page.author] %}{% else %}{% assign author = site.author %}
+  {% assign author = site.data.authors[page.author] %}
+{% else %}
+  {% assign author = site.author %}
 {% endif %}
 
 {%- comment -%}
-  更可靠的语言判定：优先使用页面 front matter 中的 page.lang。
-  兼容旧逻辑：若未设置 lang，则回退到根据 URL 是否包含 /en/ 来判断。
+  优先使用页面 front matter 中的语言；旧页面则根据 URL 回退判断。
 {%- endcomment -%}
 {% assign is_en = false %}
 {% if page.lang %}
@@ -13,17 +14,19 @@
   {% assign is_en = page.url contains '/en/' %}
 {% endif %}
 
-{%- comment -%}
-  英文侧作者信息：如果未在 _config.yml 提供对应字段，则回退到中文。
-{%- endcomment -%}
 {% assign author_name = author.name %}
-{% if is_en and author.name_en %}{% assign author_name = author.name_en %}{% endif %}
-
+{% assign author_name_secondary = author.name_en %}
+{% assign author_bio = author.bio %}
 {% assign author_location = author.location %}
-{% if is_en and author.location_en %}{% assign author_location = author.location_en %}{% endif %}
+{% assign focus_areas = site.data.project_tracks %}
+{% if is_en %}
+  {% if author.name_en %}{% assign author_name = author.name_en %}{% endif %}
+  {% assign author_name_secondary = author.name %}
+  {% if author.bio_en %}{% assign author_bio = author.bio_en %}{% endif %}
+  {% if author.location_en %}{% assign author_location = author.location_en %}{% endif %}
+{% endif %}
 
-<div itemscope itemtype="https://schema.org/Person">
-
+<div class="author-card" itemscope itemtype="https://schema.org/Person">
   {% if author.avatar %}
     <div class="author__avatar">
       {% if author.avatar contains "http" %}
@@ -38,84 +41,73 @@
     {% if author_name %}
       <h3 class="author__name" itemprop="name">{{ author_name }}</h3>
     {% endif %}
-
-    {% if is_en and author.bio_en %}
-      <p class="author__bio" itemprop="description">{{ author.bio_en }}</p>
-    {% elsif author.bio %}
-      <p class="author__bio" itemprop="description">{{ author.bio }}</p>
+    {% if author_name_secondary and author_name_secondary != author_name %}
+      <p class="author__name-secondary">{{ author_name_secondary }}</p>
     {% endif %}
-
-    {% if is_en and site.description_en %}
-      <p class="author__bio" itemprop="description">{{ site.description_en }}</p>
-    {% elsif site.description %}
-      <p class="author__bio" itemprop="description">{{ site.description }}</p>
+    {% if author_bio %}
+      <p class="author__bio" itemprop="description">{{ author_bio }}</p>
     {% endif %}
   </div>
 
-  <div class="author__urls-wrapper">
-    <button class="btn btn--inverse">{% if is_en %}Links{% else %}联系方式{% endif %}</button>
-    <ul class="author__urls social-icons">
+  {% if focus_areas %}
+    <section class="author__section" aria-labelledby="author-focus-title">
+      <h4 class="author__section-title" id="author-focus-title">{% if is_en %}Focus Areas{% else %}关注方向{% endif %}</h4>
+      <ul class="author__focus-list">
+        {% for focus in focus_areas %}
+          <li>{% if is_en and focus.title_en %}{{ focus.title_en }}{% else %}{{ focus.title }}{% endif %}</li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  <details class="author__contact" open>
+    <summary>{% if is_en %}Contact &amp; Links{% else %}联系与主页{% endif %}</summary>
+    <dl class="author__contact-list">
       {% if author_location %}
-        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">{{ author_location }}</span>
-        </li>
+        <div class="author__contact-item" itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <dt>{% if is_en %}Location{% else %}地点{% endif %}</dt>
+          <dd itemprop="name">{{ author_location }}</dd>
+        </div>
       {% endif %}
 
       {% if author.email %}
-        <li>
-          <a href="mailto:{{ author.email }}">
-            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> <span class="label">Email</span>
-          </a>
-        </li>
+        <div class="author__contact-item">
+          <dt>Email</dt>
+          <dd><a href="mailto:{{ author.email }}" itemprop="email">{{ author.email }}</a></dd>
+        </div>
       {% endif %}
 
       {% if author.github %}
-        <li>
-          <a href="https://github.com/{{ author.github }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> <span class="label">GitHub</span>
-          </a>
-        </li>
+        <div class="author__contact-item">
+          <dt>GitHub</dt>
+          <dd><a href="https://github.com/{{ author.github }}" itemprop="sameAs" rel="nofollow noopener noreferrer">{{ author.github }}</a></dd>
+        </div>
       {% endif %}
 
       {% if author.googlescholar %}
-        <li>
-          <a href="{{ author.googlescholar }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="ai ai-google-scholar-square ai-fw" aria-hidden="true"></i> <span class="label">Google Scholar</span>
-          </a>
-        </li>
+        <div class="author__contact-item">
+          <dt>Google Scholar</dt>
+          <dd><a href="{{ author.googlescholar }}" itemprop="sameAs" rel="nofollow noopener noreferrer">{% if is_en %}Publications &amp; citations{% else %}论文与引用{% endif %}</a></dd>
+        </div>
       {% endif %}
 
       {% if author.orcid %}
-        <li>
-          <a href="{{ author.orcid }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="ai ai-orcid ai-fw" aria-hidden="true"></i> <span class="label">ORCID</span>
-          </a>
-        </li>
-      {% endif %}
-      
-      {% if author.researchgate %}
-        <li>
-          <a href="{{ author.researchgate }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="ai ai-researchgate ai-fw" aria-hidden="true"></i> <span class="label">ResearchGate</span>
-          </a>
-        </li>
+        <div class="author__contact-item">
+          <dt>ORCID</dt>
+          <dd><a href="{{ author.orcid }}" itemprop="sameAs" rel="nofollow noopener noreferrer">{{ author.orcid | remove: 'https://orcid.org/' }}</a></dd>
+        </div>
       {% endif %}
 
       {% if author.links %}
         {% for link in author.links %}
           {% if link.label and link.url %}
-            <li>
-              <a href="{{ link.url }}" rel="nofollow noopener noreferrer">
-                {% if link.icon %}<i class="{{ link.icon }}" aria-hidden="true"></i>{% endif %}
-                <span class="label">{{ link.label }}</span>
-              </a>
-            </li>
+            <div class="author__contact-item">
+              <dt>{{ link.label }}</dt>
+              <dd><a href="{{ link.url }}" rel="nofollow noopener noreferrer">{% if link.value %}{{ link.value }}{% else %}{{ link.label }}{% endif %}</a></dd>
+            </div>
           {% endif %}
         {% endfor %}
       {% endif %}
-
-      {% include author-profile-custom-links.html %}
-    </ul>
-  </div>
-
+    </dl>
+  </details>
 </div>
