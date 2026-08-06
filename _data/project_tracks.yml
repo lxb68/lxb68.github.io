@@ -2,8 +2,8 @@
   title: "深度学习与 AI 工程"
   title_en: "Deep Learning & AI Engineering"
   icon: "△"
-  description: "覆盖点云 Transformer 的 GPU 训练优化，以及 Research Agent 从模型能力到网页产品的实现。"
-  description_en: "GPU training for point-cloud Transformers and end-to-end Research Agent web applications."
+  description: "覆盖 GPU 点云推理与深度学习模型实现，以及 Research Agent 从模型能力到网页产品的落地。"
+  description_en: "GPU point-cloud inference, deep-learning model implementation, and end-to-end Research Agent web applications."
 
 - key: privacy
   title: "隐私保护机器学习"
