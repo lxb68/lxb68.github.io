@@ -1,83 +1,109 @@
 ---
-title: "基于 CUDA 与 Triton 的 PointNet 推理实现"
+title: "基于 CUDA 的 PointNet 分类网络推理"
 order: 2
 track: "ai-engineering"
 featured: true
 period: "2025"
 role: "独立完成"
-status: "draft"
+status: "complete"
 visual: "ai-engineering"
 icon: "◈"
-visual_label: "CUDA · Triton"
+visual_label: "CUDA · PointNet"
 cover: "/images/project/cuda_inference/cover.jpg"
 tech:
   - "CUDA"
-  - "Triton"
   - "PointNet"
   - "3D MNIST"
   - "PyTorch"
-summary: "面向 3D MNIST 点云分类任务训练 PointNet，并分别使用 CUDA C++ 与 Triton 实现推理，比较预测准确率和端到端推理耗时。"
+  - "C++"
+summary: "面向 3D MNIST 点云分类任务，使用 CUDA C++ 实现简化 PointNet 的完整推理流程，最终准确率达到 95.2%，推理时间低于 11.34 秒。"
 ---
 
-## 项目背景
+## 项目概述
 
-本项目是一项深度学习推理工程实践：先使用 PyTorch 训练点云分类模型，再脱离训练框架的常规推理路径，分别以 CUDA C++ 和 Triton 实现前向计算。项目重点不是重新设计网络，而是把已经训练好的模型可靠地迁移到两套 GPU 推理实现中，并从**结果正确性**和**执行效率**两个维度进行验证。
+本项目围绕 3D MNIST 点云分类开展 GPU 推理实践：首先使用 PyTorch 完成模型训练与参数导出，再以 CUDA C++ 独立实现前向计算，重点验证训练参数迁移、自定义算子正确性以及端到端推理效率。
 
-任务使用 [3D MNIST 数据集](https://www.kaggle.com/datasets/daavoo/3d-mnist/data)，以 [PointNet](https://arxiv.org/abs/1612.00593) 作为基础网络完成三维点云数字分类。
+模型基于 PointNet 分类网络进行简化。它不依赖规则网格或点的排列顺序，而是对每个点应用相同的特征提取函数，再通过对称聚合获得整个点云的全局表示，最终输出 10 个数字类别的得分。
 
-## 任务流程
+## 网络结构
 
-1. **模型训练**：`train.py` 读取训练集，完成 PointNet 训练并导出模型参数。
-2. **测试数据输入**：使用相同的数据预处理规则读取测试集，确保训练端与推理端的输入布局、数据类型和归一化方式一致。
-3. **CUDA 推理**：`test.cu` 加载模型参数，以 CUDA C++ 完成前向计算并输出分类结果。
-4. **Triton 推理**：`test.py` 使用 Triton 编写 GPU 算子，复现同一条前向计算链路。
-5. **结果评测**：统计两种实现的分类准确率和推理时间，作为课程排名依据。
+参考原始 PointNet 分类架构，本项目保留三项核心设计：`3×3` 输入变换、共享逐点卷积和全局最大池化；未启用 `64×64` 特征变换，也不包含分割分支。由此将计算链路集中在分类任务所需的最小闭环上。
 
-## 模型与数据
+<figure>
+  <img src="/images/project/cuda_inference/pointnet-architecture.png" alt="PointNet 论文中的分类网络与分割网络完整架构图">
+  <figcaption>PointNet 完整架构。<a href="https://arxiv.org/pdf/1612.00593" target="_blank" rel="noopener noreferrer">图源：PointNet 原论文 Figure 2</a>。本项目仅采用上方分类主干中的 3×3 输入变换、共享逐点卷积、全局最大池化与分类头，未启用 64×64 特征变换及下方分割分支。</figcaption>
+</figure>
 
-3D MNIST 将手写数字表示为三维体素或点云。输入经过统一采样与整理后形成点集合，每个点由三维坐标描述。PointNet 对每个点共享特征变换，再通过对称聚合操作形成不受点顺序影响的全局特征，最后由分类头输出各数字类别的得分。
+本项目实际采用的前向路径如下：
 
-这类模型的推理实现包含两类典型计算：
+<div class="pointnet-path" aria-label="简化 PointNet 前向路径">
+  <div class="pointnet-path__step">
+    <span class="pointnet-path__index">01</span>
+    <strong>输入点云</strong>
+    <span class="pointnet-path__meta">N × 3</span>
+  </div>
+  <div class="pointnet-path__step">
+    <span class="pointnet-path__index">02</span>
+    <strong>输入变换</strong>
+    <span class="pointnet-path__meta">T-Net · 3 × 3</span>
+  </div>
+  <div class="pointnet-path__step">
+    <span class="pointnet-path__index">03</span>
+    <strong>共享逐点卷积</strong>
+    <span class="pointnet-path__meta">3 → 64 → 128 → 1024</span>
+  </div>
+  <div class="pointnet-path__step">
+    <span class="pointnet-path__index">04</span>
+    <strong>全局最大池化</strong>
+    <span class="pointnet-path__meta">N × 1024 → 1024</span>
+  </div>
+  <div class="pointnet-path__step pointnet-path__step--final">
+    <span class="pointnet-path__index">05</span>
+    <strong>分类输出</strong>
+    <span class="pointnet-path__meta">1024 → 512 → 256 → 10</span>
+  </div>
+  <div class="pointnet-path__scope" aria-label="模型启用范围">
+    <span class="pointnet-path__tag pointnet-path__tag--enabled">✓ 分类路径</span>
+    <span class="pointnet-path__tag">— 64×64 特征变换</span>
+    <span class="pointnet-path__tag">— 分割分支</span>
+  </div>
+</div>
 
-- 逐点共享的线性变换、归一化和激活；
-- 跨点维度的最大值归约，以及最终的全连接分类。
+### 3×3 输入变换
 
-前者适合按点和通道并行，后者则需要处理线程间归约与同步，因此能够较完整地考察 GPU 算子设计能力。
+输入 T-Net 根据每个点云预测一个 `3×3` 矩阵，并将其与单位矩阵相加后用于坐标对齐。这一步提升了模型对点云旋转与坐标姿态变化的适应能力，同时保留了较低的计算开销。
 
-## CUDA 实现
+### 共享逐点卷积
 
-CUDA 版本以 `test.cu` 为推理入口，负责参数读取、显存管理、算子调度和结果回传。实现时需要重点保证：
+主干网络使用共享的 `1×1 Conv1D` 对每个点执行相同的通道变换。卷积权重在所有点之间共享，因此既能并行提取局部点特征，又不会引入对输入排列顺序的依赖。
 
-- 模型权重的维度顺序与 `train.py` 导出格式一致；
-- 点特征在线性层之间采用统一的数据布局，避免隐式转置导致结果错误；
-- 归约算子能够覆盖任意点数，并正确处理中间最大值；
-- 计时前完成 GPU 预热，并在计时边界执行同步，避免把异步提交时间误当作执行时间；
-- 尽量复用设备端缓冲区，减少频繁分配显存和主机—设备数据传输。
+### 全局最大池化与分类
 
-## Triton 实现
+全局最大池化在所有点上提取每个通道的最大响应，将 `[N, 1024]` 聚合为固定长度的 `[1024]` 全局特征。分类头随后输出 10 类 logits；推理阶段直接取 `argmax`，无需额外计算 Softmax。
 
-Triton 版本以 `test.py` 为入口，通过 Python 组织模型参数和推理流程，并用 Triton kernel 表达主要 GPU 计算。相较于 CUDA C++，Triton 将线程组织抽象为分块程序，便于围绕块大小、访存合并和并行归约进行调优。
+## CUDA 推理流程
 
-两种实现共用相同的模型参数、测试样本和输出判定规则。这样可以把性能差异尽量限定在推理后端，而不是数据处理或模型配置上，保持评测的可比性。
+1. **训练与导出**：使用 PyTorch 训练简化 PointNet，并导出卷积、BatchNorm 与全连接层参数。
+2. **数据加载**：读取 3D MNIST 测试点云与标签，整理为 CUDA 前向计算所需的数据布局。
+3. **自定义算子执行**：依次完成输入变换、共享逐点卷积、归一化与激活、最大值归约和全连接计算。
+4. **结果汇总**：回传分类结果，统计测试集准确率与 CUDA 推理耗时。
 
-## 正确性与性能验证
+CUDA 实现的关键在于保持训练端与推理端的权重维度、张量布局和 BatchNorm 参数一致，并正确处理矩阵变换、逐点并行计算与跨点最大值归约。设备端缓冲区复用和同步边界控制则用于减少额外开销，使计时结果更能反映实际推理性能。
 
-在性能调优前，先使用少量样本逐层对齐 PyTorch、CUDA 和 Triton 的中间结果，定位可能存在的权重转置、索引偏移、数据布局或浮点误差问题。最终评测建议统一记录以下指标：
+## 实验结果
 
-| 指标 | CUDA | Triton | 说明 |
-| --- | ---: | ---: | --- |
-| 测试集准确率 | 待实测 | 待实测 | 与 PyTorch 基线核对 |
-| 单样本／批次延迟 | 待实测 | 待实测 | 报告批大小与统计口径 |
-| 端到端推理时间 | 待实测 | 待实测 | 包含范围需保持一致 |
-| GPU 核心执行时间 | 待实测 | 待实测 | 预热后多次运行取统计值 |
+在统一测试集与计时口径下，CUDA 版本的最终结果如下：
 
-当前仓库尚未包含原始代码、运行日志和硬件环境，因此不在页面中虚构准确率或加速比。补充 GPU 型号、CUDA/Triton 版本、批大小、运行次数及实测输出后，即可形成可复现的完整实验结论。
+| 指标 | CUDA 最终结果 |
+| --- | ---: |
+| 测试集准确率 | **95.2%** |
+| CUDA 推理时间 | **< 11.34 s** |
+
+最终准确率达到 **95.2%**，说明简化网络在移除 `64×64` 特征变换和分割分支后，仍能有效完成 3D 点云数字分类；推理时间控制在 **11.34 秒以内**，验证了 CUDA 实现的完整性与执行效率。
 
 ## 项目收获
 
-该项目贯通了“模型训练—参数导出—自定义算子—结果对齐—性能评测”的完整流程，核心实践包括：
-
-- 理解 PointNet 中逐点特征提取与全局最大池化的计算结构；
-- 将 PyTorch 模型参数映射到 CUDA C++ 和 Triton 推理后端；
-- 处理 GPU 推理中的数据布局、并行归约、同步与计时问题；
-- 在准确率一致的前提下比较不同 GPU 编程方式的开发效率与运行性能。
+- 理解 PointNet 通过共享逐点特征提取与对称聚合处理无序点集的核心机制；
+- 完成 PyTorch 参数到 CUDA C++ 推理链路的映射与结果验证；
+- 实践矩阵变换、逐点卷积、最大值归约和全连接层的 CUDA 算子组织；
+- 在明确模型边界的前提下，以更精简的分类网络降低实现复杂度和模块耦合。

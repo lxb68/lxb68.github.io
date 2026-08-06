@@ -1,60 +1,104 @@
 ---
-title: "PointNet Inference with CUDA and Triton"
+title: "PointNet Classification Inference with CUDA"
 order: 7
 track: "ai-engineering"
 featured: true
 period: "To be added"
 role: "Course Project"
-status: "draft"
+status: "complete"
 visual: "ai-engineering"
 icon: "◈"
-visual_label: "CUDA · Triton"
+visual_label: "CUDA · PointNet"
 cover: "/images/project/cuda_inference/cover.jpg"
-tech: ["CUDA", "Triton", "PointNet", "3D MNIST", "PyTorch"]
-summary: "Trained PointNet for 3D MNIST classification and implemented equivalent inference paths in CUDA C++ and Triton to compare accuracy and end-to-end latency."
+tech: ["CUDA", "PointNet", "3D MNIST", "PyTorch", "C++"]
+summary: "Implemented end-to-end CUDA C++ inference for a simplified PointNet classifier on 3D MNIST, reaching 95.2% final accuracy in under 11.34 seconds."
 ---
 
-## Background
+## Overview
 
-This project is a hands-on deep-learning inference exercise. A PointNet classifier is first trained in PyTorch, after which its forward pass is implemented independently in CUDA C++ and Triton. The goal is not to redesign the network, but to migrate trained parameters reliably to two GPU backends and evaluate both correctness and execution efficiency.
+This project explores GPU inference for 3D MNIST point-cloud classification. The model is trained and exported with PyTorch, then its forward pass is implemented independently in CUDA C++. The work focuses on reliable parameter migration, correct custom operators, and end-to-end inference efficiency.
 
-The task uses the [3D MNIST dataset](https://www.kaggle.com/datasets/daavoo/3d-mnist/data) and the [PointNet architecture](https://arxiv.org/abs/1612.00593) for 3D point-cloud digit classification.
+The network is a streamlined version of the PointNet classifier. Instead of relying on a regular grid or point order, it applies the same feature extractor to every point, aggregates the responses into a global representation, and predicts one of ten digit classes.
 
-## Pipeline
+## Network Architecture
 
-1. `train.py` loads the training set, trains PointNet, and exports model parameters.
-2. The test set is processed with the same layout, data type, sampling, and normalization rules used during training.
-3. `test.cu` loads the parameters and performs the forward pass in CUDA C++.
-4. `test.py` implements the equivalent forward path with Triton kernels.
-5. Both implementations are evaluated using classification accuracy and inference time.
+Following the original PointNet classification design, this implementation retains the `3×3` input transform, shared point-wise convolution, and global max pooling. The `64×64` feature transform is disabled, and the segmentation branch is not included. This keeps the model focused on the shortest complete path required for classification.
 
-## Model and Workload
+<figure>
+  <img src="/images/project/cuda_inference/pointnet-architecture.png" alt="Complete classification and segmentation architecture from the PointNet paper">
+  <figcaption>Complete PointNet architecture. <a href="https://arxiv.org/pdf/1612.00593" target="_blank" rel="noopener noreferrer">Source: Figure 2 in the original PointNet paper</a>. This project uses only the upper classification path's 3×3 input transform, shared point-wise convolution, global max pooling, and classification head; the 64×64 feature transform and lower segmentation branch are disabled.</figcaption>
+</figure>
 
-3D MNIST represents handwritten digits as voxels or point clouds. PointNet applies shared feature transformations to individual points, uses a symmetric reduction to produce an order-invariant global representation, and passes that representation to a classification head.
+The implemented forward path is:
 
-The workload therefore combines highly parallel point-wise linear operations with cross-point max reductions. This makes it a useful exercise in memory layout, coalesced access, reduction design, synchronization, and kernel launch configuration.
+<div class="pointnet-path" aria-label="Simplified PointNet forward path">
+  <div class="pointnet-path__step">
+    <span class="pointnet-path__index">01</span>
+    <strong>Input points</strong>
+    <span class="pointnet-path__meta">N × 3</span>
+  </div>
+  <div class="pointnet-path__step">
+    <span class="pointnet-path__index">02</span>
+    <strong>Input transform</strong>
+    <span class="pointnet-path__meta">T-Net · 3 × 3</span>
+  </div>
+  <div class="pointnet-path__step">
+    <span class="pointnet-path__index">03</span>
+    <strong>Shared point-wise Conv</strong>
+    <span class="pointnet-path__meta">3 → 64 → 128 → 1024</span>
+  </div>
+  <div class="pointnet-path__step">
+    <span class="pointnet-path__index">04</span>
+    <strong>Global max pool</strong>
+    <span class="pointnet-path__meta">N × 1024 → 1024</span>
+  </div>
+  <div class="pointnet-path__step pointnet-path__step--final">
+    <span class="pointnet-path__index">05</span>
+    <strong>Class scores</strong>
+    <span class="pointnet-path__meta">1024 → 512 → 256 → 10</span>
+  </div>
+  <div class="pointnet-path__scope" aria-label="Enabled model scope">
+    <span class="pointnet-path__tag pointnet-path__tag--enabled">✓ Classification path</span>
+    <span class="pointnet-path__tag">— 64×64 feature transform</span>
+    <span class="pointnet-path__tag">— Segmentation branch</span>
+  </div>
+</div>
 
-## CUDA Implementation
+### 3×3 Input Transform
 
-The CUDA path uses `test.cu` as its inference entry point and coordinates parameter loading, device memory, kernel launches, and result transfer. Correctness depends on matching the exported weight layout, using a consistent feature layout between layers, covering arbitrary point counts in reduction kernels, and applying explicit synchronization at timing boundaries. Device buffers should be reused where possible to avoid measuring repeated allocation and unnecessary host-device transfers.
+The input T-Net predicts one `3×3` matrix for each point cloud. After adding the identity matrix, the transform aligns the input coordinates and improves robustness to changes in orientation while keeping the additional computation compact.
 
-## Triton Implementation
+### Shared Point-wise Convolution
 
-The Triton path uses `test.py` to organize the inference pipeline and express the main GPU operations as blocked Triton programs. Its tuning space includes tile sizes, memory coalescing, masking, and parallel reductions. Both backends share the same trained parameters, samples, preprocessing, and prediction rules so that measured differences are attributable to the inference implementation.
+The backbone applies shared `1×1 Conv1D` layers to every point. Reusing the same weights across points makes the operation highly parallel and preserves independence from the input ordering.
 
-## Validation and Benchmarking
+### Global Aggregation and Classification
 
-Before optimization, intermediate tensors should be compared against the PyTorch reference on a small sample set. This isolates common errors such as transposed weights, indexing mistakes, incompatible layouts, or unexpected floating-point differences.
+Global max pooling takes the strongest response in each channel and compresses `[N, 1024]` point features into a fixed `[1024]` global descriptor. The classification head produces ten logits, and inference uses `argmax` directly because Softmax would not change the predicted class.
 
-| Metric | CUDA | Triton | Notes |
-| --- | ---: | ---: | --- |
-| Test accuracy | Pending | Pending | Compare with the PyTorch reference |
-| Per-sample / batch latency | Pending | Pending | Report the batch size and statistic |
-| End-to-end inference time | Pending | Pending | Use identical timing boundaries |
-| GPU kernel time | Pending | Pending | Warm up, then aggregate repeated runs |
+## CUDA Inference Pipeline
 
-The source code, logs, and hardware configuration are not currently present in this repository, so this page intentionally does not invent accuracy or speedup numbers. A reproducible conclusion can be added once the GPU model, CUDA and Triton versions, batch size, repetition count, and measured outputs are available.
+1. **Train and export:** train the simplified PointNet in PyTorch and export convolution, BatchNorm, and fully connected parameters.
+2. **Load data:** read 3D MNIST test point clouds and labels, then arrange them in the layout expected by the CUDA path.
+3. **Run custom operators:** execute the input transform, shared point-wise convolution, normalization and activation, max reduction, and fully connected layers.
+4. **Evaluate:** transfer predictions back and report test accuracy and CUDA inference time.
+
+Correctness depends on keeping weight dimensions, tensor layouts, and BatchNorm parameters consistent with the training model. Reusing device buffers and controlling synchronization boundaries reduce avoidable overhead and make the reported timing representative of the inference path.
+
+## Results
+
+Using a consistent test set and timing boundary, the final CUDA results are:
+
+| Metric | Final CUDA Result |
+| --- | ---: |
+| Test accuracy | **95.2%** |
+| CUDA inference time | **< 11.34 s** |
+
+The simplified classifier achieved **95.2%** final accuracy while completing CUDA inference in **under 11.34 seconds**. These results demonstrate that the reduced architecture remains effective for 3D digit classification and that the custom CUDA path executes the full model efficiently.
 
 ## Takeaways
 
-The project covers the full path from model training and parameter export to custom GPU kernels, numerical validation, and performance measurement. It demonstrates practical understanding of PointNet computation, cross-backend parameter mapping, GPU data layouts and reductions, synchronization-aware benchmarking, and fair comparison between CUDA C++ and Triton.
+- Understood how PointNet combines shared point-wise feature extraction with symmetric aggregation for unordered point sets.
+- Mapped exported PyTorch parameters into a complete CUDA C++ inference path and validated its output.
+- Implemented the computation flow around matrix transforms, point-wise convolution, max reduction, and fully connected layers.
+- Reduced implementation complexity and module coupling by keeping only the components required for classification.

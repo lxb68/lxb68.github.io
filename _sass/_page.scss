@@ -554,6 +554,119 @@
         }
       }
     }
+
+    /* PointNet 项目专用流程组件：与代码高亮解耦，避免影响其他项目页。 */
+    .pointnet-path {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 1.25rem 0 2rem;
+      padding: 1rem;
+      background: linear-gradient(135deg, #f7fafc, #eef4f9);
+      border: 1px solid #dbe5ed;
+      border-radius: 0.75rem;
+    }
+
+    .pointnet-path__step {
+      position: relative;
+      display: flex;
+      min-width: 0;
+      min-height: 8rem;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.9rem;
+      background: #fff;
+      border: 1px solid #d9e3ec;
+      border-top: 3px solid #3d78a5;
+      border-radius: 0.55rem;
+      box-shadow: 0 5px 14px rgba(34, 75, 110, 0.07);
+
+      &:not(.pointnet-path__step--final)::after {
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        right: -1.25rem;
+        color: #8ca3b6;
+        content: "→";
+        font-size: 1.1rem;
+        line-height: 1;
+        transform: translateY(-50%);
+      }
+
+      strong {
+        color: #203d57;
+        font-family: $sans-serif;
+        font-size: 0.93rem;
+        line-height: 1.35;
+      }
+    }
+
+    .pointnet-path__step--final {
+      border-top-color: #df8a3d;
+
+      .pointnet-path__index { color: #b76620; background: #fff1e2; }
+    }
+
+    .pointnet-path__index {
+      display: grid;
+      width: 1.8rem;
+      height: 1.8rem;
+      place-items: center;
+      color: #245b82;
+      background: #eaf3fa;
+      border-radius: 50%;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .pointnet-path__meta {
+      margin-top: auto;
+      color: #5c7183;
+      font-family: $monospace;
+      font-size: 0.72rem;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .pointnet-path__scope {
+      display: flex;
+      grid-column: 1 / -1;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-top: 0.1rem;
+    }
+
+    .pointnet-path__tag {
+      padding: 0.28rem 0.6rem;
+      color: #71808d;
+      background: #e8edf1;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      line-height: 1.4;
+    }
+
+    .pointnet-path__tag--enabled {
+      color: #236244;
+      background: #e5f4eb;
+    }
+
+    @media (max-width: 900px) {
+      .pointnet-path { grid-template-columns: 1fr; }
+
+      .pointnet-path__step {
+        min-height: 0;
+
+        &:not(.pointnet-path__step--final)::after {
+          top: auto;
+          right: 50%;
+          bottom: -1.05rem;
+          content: "↓";
+          transform: translateX(50%);
+        }
+      }
+
+      .pointnet-path__scope { grid-column: auto; }
+    }
   }
 
   .project-flow-figure {
