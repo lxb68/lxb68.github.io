@@ -9,7 +9,6 @@ lang: en
 <div class="projects-intro">
   <p class="eyebrow">PROJECT INDEX</p>
   <h1>From problem formulation to system implementation</h1>
-  <p>Projects are organized by capability. Each detail page will document the problem, approach, contribution, experiments, results, and reproducibility.</p>
 </div>
 
 {% assign items = site.projects_en | sort: 'order' %}

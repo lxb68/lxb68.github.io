@@ -9,7 +9,6 @@ lang: zh
 <div class="projects-intro">
   <p class="eyebrow">PROJECT INDEX</p>
   <h1>从问题建模到系统实现</h1>
-  <p>项目按能力主线组织。每个详情页将逐步补充问题定义、技术方案、个人贡献、实验设计、结果与复现方式。</p>
 </div>
 
 {% assign items = site.projects | sort: 'order' %}
