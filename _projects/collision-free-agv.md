@@ -71,6 +71,19 @@ summary: "面向无人仓多 AGV 协同作业，联合优化订单与托盘分�
 - 多台 AGV 同时进入同一储位或堵塞出入口形成的死锁；
 - 规划路径邻域在时间窗内被其他 AGV 反复穿越形成的拥堵。
 
+<figure class="half project-conflict-figure">
+  <img src="/images/project/collision-free-agv/node-conflict.png" alt="两台 AGV 在同一时刻进入同一节点形成节点冲突">
+  <img src="/images/project/collision-free-agv/opposite-conflict.png" alt="两台 AGV 在同一路段同时反向行驶形成相向冲突">
+  <figcaption>典型路径冲突：（a）两个及以上 AGV 同时出现在同一节点时形成节点冲突；（b）两台 AGV 同时在同一路段反向行驶时形成相向冲突。</figcaption>
+</figure>
+
+原文进一步将储位死锁归纳为两种典型情况：一是多台 AGV 同时在同一储位节点取放不同托盘；二是 AGV 1 正在执行出库任务，而执行自动回库任务的 AGV 2 停在 AGV 1 的出口位置，导致出库路径被阻断。
+
+<figure class="project-flow-figure" style="max-width: 26rem;">
+  <img src="/images/project/collision-free-agv/deadlock.png" alt="出库 AGV 被停在储位出口的自动回库 AGV 阻挡形成死锁">
+  <figcaption>储位死锁示意：自动回库 AGV 占用储位出口，阻挡正在执行出库任务的 AGV；规划器需要在写入轨迹前识别并规避这种相互阻塞状态。</figcaption>
+</figure>
+
 ### 分层避障决策
 
 检测到风险后，系统依次尝试等待避让、退避等待、备用路线、低拥堵路线和区域外围路线；仅当前述局部策略都无法得到安全路径时，才更换任务执行 AGV。该优先级把局部路径修复与全局任务重分配解耦，减少一次冲突对整体调度方案的扰动。

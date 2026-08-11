@@ -16,7 +16,7 @@ tech:
   - "3D MNIST"
   - "PyTorch"
   - "C++"
-summary: "面向 3D MNIST 点云分类任务，使用 CUDA C++ 实现简化 PointNet 的完整推理流程，最终准确率达到 95.2%，推理时间低于 11.34 秒。"
+summary: "面向 3D MNIST 点云分类任务，使用 CUDA C++ 实现简化 PointNet 的完整推理流程，最终准确率达到 95.2%，推理时间为 11.34 秒。"
 redirect_from:
   - /projects/point-cloud-transformer/
 ---

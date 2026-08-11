@@ -31,8 +31,8 @@ author:
   avatar           : "images/LiWanhua_profile.jpg"
   bio              : "中国科学院大学｜电子信息（计算机）"
   bio_en           : "UCAS | Electronic Information (Computer Science)"
-  location         : "北京"
-  location_en      : "Beijing, China"
+  location         : 
+  location_en      : 
   employer         : #"Hefei General Machinery Research Institute"
   pubmed           : 
   googlescholar    :

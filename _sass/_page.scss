@@ -510,6 +510,26 @@
 
     figure.project-flow-figure { max-width: 34rem; }
 
+    /* Research Agent 流程较长，使用专用规则保证正文可读且不影响其他项目图。 */
+    figure.project-flow-figure--research-agent {
+      max-width: 64rem;
+
+      .project-flow-link {
+        display: block;
+        width: 100%;
+        cursor: zoom-in;
+      }
+
+      .project-flow-link > img {
+        display: block;
+        width: 100%;
+        max-width: none;
+        height: auto;
+        max-height: none;
+        margin: 0 auto;
+      }
+    }
+
     figure.half {
       max-width: 48rem;
       gap: 1rem;

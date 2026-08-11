@@ -24,6 +24,8 @@ summary: "提出 P³RF 非交互式密文随机森林推理框架，以低阶路
 
 本项目提出 **P³RF（Packed Privacy-Preserving Random Forest）**：客户端仅上传一次加密特征，模型持有方在 CKKS 密文上完成节点比较、路径计算、类别对齐和森林聚合，再返回少量分组投票密文。客户端解密并舍入后即可恢复精确票数，全程只需一次上传—下载，不暴露原始输入，也不向服务器公开预测结果。
 
+论文发表在wisa 2026会议集上。
+
 <figure class="project-flow-figure">
   <img src="/images/project/privacy-preserving-random-forest/protocol-overview.png" alt="P³RF 从客户端特征打包到服务器端节点比较、路径计算、槽位对齐和森林聚合的整体流程" loading="eager">
   <figcaption>P³RF 总体流程：客户端按比较协议打包并加密特征；服务器并行计算所有树的路径分数，经槽位对齐、路径指示多项式和类别聚合得到分组投票密文。</figcaption>

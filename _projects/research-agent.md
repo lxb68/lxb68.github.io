@@ -113,6 +113,19 @@ Research Agent 面向需要持续阅读、整理和比较大量论文的研究�
 
 研究问答的主依赖方向保持为“上下文 → 问题契约 → 结构索引 → 候选召回 → 证据组装 → 覆盖评估 → 补偿检索或答案生成 → 引用校验”。各阶段通过明确的数据契约衔接，下游不反向修改上游约束，便于独立测试和替换检索或模型实现。
 
+<figure class="project-flow-figure project-flow-figure--research-agent">
+  <a class="project-flow-link"
+     href="/images/project/research-agent/流程图.svg"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="在新窗口打开 Research Agent 高清流程图">
+    <img src="/images/project/research-agent/流程图.svg"
+         alt="Research Agent 从研究问题、任务路由到证据召回、回答生成与引用校验的系统流程图"
+         loading="lazy">
+  </a>
+  <figcaption>Research Agent 系统流程图（点击图片查看高清原图）</figcaption>
+</figure>
+
 ## 项目成果
 
 项目完成了从资料发现到知识复用的端到端闭环：多源搜索负责扩展文献集合，项目空间固定可信语料范围，文献地图与领域树提供宏观结构，知识图谱呈现细粒度关系，研究对话再把这些材料转化为带原文证据的回答。通过把项目隔离、证据覆盖与引用校验作为系统级约束，Research Agent 从通用聊天界面扩展为可核查、可持续积累的研究工作台。

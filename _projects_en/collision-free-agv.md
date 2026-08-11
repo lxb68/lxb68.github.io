@@ -71,6 +71,19 @@ A Conflict Avoidance Table (CAT) stores every planned `(x, y, t)` state and supp
 - storage-node and entrance blocking that can produce deadlock;
 - routes whose surrounding time-window region is repeatedly traversed by other AGVs.
 
+<figure class="half project-conflict-figure">
+  <img src="/images/project/collision-free-agv/node-conflict.png" alt="Two AGVs entering the same node at the same time and causing a node conflict">
+  <img src="/images/project/collision-free-agv/opposite-conflict.png" alt="Two AGVs traveling in opposite directions on the same road section at the same time">
+  <figcaption>Typical route conflicts: (a) a node conflict occurs when two or more AGVs occupy the same node; (b) an opposite-direction conflict occurs when two AGVs travel in opposite directions on the same road section at the same time.</figcaption>
+</figure>
+
+The paper further identifies two storage-location deadlock cases. In the first, multiple AGVs need to pick up or return different pallets at the same storage node. In the second, AGV 1 is executing an outbound operation while AGV 2, performing an automatic return, is parked at AGV 1's exit and blocks its route.
+
+<figure class="project-flow-figure" style="max-width: 26rem;">
+  <img src="/images/project/collision-free-agv/deadlock.png" alt="An outbound AGV blocked by an automatically returning AGV parked at the storage-location exit">
+  <figcaption>Storage-location deadlock: an automatically returning AGV occupies the exit and blocks the outbound AGV. The planner must detect and avoid this mutually blocking state before committing either trajectory.</figcaption>
+</figure>
+
 ### Hierarchical avoidance policy
 
 When a risk is detected, the planner tries reserved-node waiting, rollback waiting, an alternate path, a less congested path, and a peripheral inter-zone path. Reassigning the task to another AGV is the final fallback. This priority isolates local path repair from global task reassignment and limits the impact of a single conflict on the overall schedule.
