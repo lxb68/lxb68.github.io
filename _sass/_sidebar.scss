@@ -202,13 +202,6 @@
     text-transform: uppercase;
   }
 
-  .author__contact-icon {
-    color: var(--profile-blue);
-    font-size: 1.1rem;
-    line-height: 1;
-    letter-spacing: normal;
-  }
-
   dd {
     margin: 0;
     overflow-wrap: anywhere;
@@ -216,6 +209,23 @@
     font-size: 0.9rem;
     font-weight: 700;
     line-height: 1.4;
+  }
+
+  .author__contact-line {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+
+    > i {
+      flex: 0 0 1.1rem;
+      color: var(--profile-blue);
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    > a {
+      min-width: 0;
+    }
   }
 
   a {
@@ -227,18 +237,6 @@
       color: var(--profile-blue);
       text-decoration: underline;
     }
-  }
-}
-
-.author__contact-item--inline {
-  display: grid;
-  align-items: center;
-  grid-template-columns: 1.1rem minmax(0, 1fr);
-  column-gap: 0.55rem;
-
-  dt,
-  dd {
-    margin: 0;
   }
 }
 

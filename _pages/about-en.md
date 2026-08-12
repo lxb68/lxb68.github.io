@@ -41,16 +41,31 @@ I am currently seeking opportunities in privacy-preserving machine learning. Con
 <span class="anchor" id="education"></span>
 ## 🎓 Education
 
-### University of Chinese Academy of Sciences
-
-**Electronic Information (Computer Science)**, Sep. 2024 - Present
-
-Selected coursework: Applied Cryptography (91), GPU Architecture and Programming (95), Optimization Methods and Implementation (94), Pattern Recognition and Machine Learning (84).
-
-### Hunan University of Science and Technology
-
-**Information and Computing Science (B+)**, Sep. 2020 - Jun. 2024
-GPA: **3.68/4.0** · Rank: **4/132**
+<div class="resume-grid education-grid">
+  <article class="resume-card education-card">
+    <header class="education-card__header">
+      <img class="education-card__logo" src="{{ '/images/中国科学院.png' | relative_url }}" alt="" style="width: 56px; height: 56px; object-fit: contain;">
+      <div class="education-card__identity">
+        <h3>University of Chinese Academy of Sciences</h3>
+        <p class="education-card__degree">Electronic Information (Computer Science)</p>
+      </div>
+      <span class="education-card__level education-card__level--graduate">Master’s</span>
+    </header>
+    <p class="education-card__meta">Sep. 2024 - Present · GPA <span class="metric">3.78/4.0</span></p>
+    <p>Selected coursework: Applied Cryptography (91), GPU Architecture and Programming (95), Optimization Methods and Implementation (94), Pattern Recognition and Machine Learning (84).</p>
+  </article>
+  <article class="resume-card education-card">
+    <header class="education-card__header">
+      <img class="education-card__logo" src="{{ '/images/湖南科技大学.png' | relative_url }}" alt="" style="width: 56px; height: 56px; object-fit: contain;">
+      <div class="education-card__identity">
+        <h3>Hunan University of Science and Technology</h3>
+        <p class="education-card__degree">Information and Computing Science (B+)</p>
+      </div>
+      <span class="education-card__level education-card__level--undergraduate">Bachelor’s</span>
+    </header>
+    <p class="education-card__meta">Sep. 2020 - Jun. 2024 · GPA <span class="metric">3.68/4.0</span> · Rank <span class="metric">4/132</span></p>
+  </article>
+</div>
 
 <span class="anchor" id="work-experience"></span>
 ## 💼 Internships

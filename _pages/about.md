@@ -41,19 +41,31 @@ redirect_from:
 <span class="anchor" id="education"></span>
 ## 🎓 教育背景
 
-<div class="resume-grid">
-  <div class="resume-card">
-    <h3>中国科学院大学</h3>
-    <p><strong>电子信息（计算机）</strong></p>
-    <p>2024.09 - 至今｜GPA <span class="metric">3.78/4.0</span></p>
-    <p>核心课程：应用密码学（91）、GPU 架构与编程（95）、算法中的最优化方法与实现（94）、模式识别与机器学习（84）。</p>
-  </div>
-  <div class="resume-card">
-    <h3>湖南科技大学</h3>
-    <p><strong>信息与计算科学（B+）</strong></p>
-    <p>2020.09 - 2024.06｜GPA <span class="metric">3.68/4.0</span>｜专业排名 <span class="metric">4/132</span></p>
+<div class="resume-grid education-grid">
+  <article class="resume-card education-card">
+    <header class="education-card__header">
+      <img class="education-card__logo" src="{{ '/images/中国科学院.png' | relative_url }}" alt="" style="width: 56px; height: 56px; object-fit: contain;">
+      <div class="education-card__identity">
+        <h3>中国科学院大学</h3>
+        <p class="education-card__degree">电子信息（计算机）</p>
+      </div>
+      <span class="education-card__level education-card__level--graduate">硕士研究生</span>
+    </header>
+    <p class="education-card__meta">2024.09 - 至今｜GPA <span class="metric">3.78/4.0</span></p>
+    <p>应用密码学（91）、GPU 架构与编程（95）、算法中的最优化方法与实现（94）、模式识别与机器学习（84）。</p>
+  </article>
+  <article class="resume-card education-card">
+    <header class="education-card__header">
+      <img class="education-card__logo" src="{{ '/images/湖南科技大学.png' | relative_url }}" alt="" style="width: 56px; height: 56px; object-fit: contain;">
+      <div class="education-card__identity">
+        <h3>湖南科技大学</h3>
+        <p class="education-card__degree">信息与计算科学（B+）</p>
+      </div>
+      <span class="education-card__level education-card__level--undergraduate">本科</span>
+    </header>
+    <p class="education-card__meta">2020.09 - 2024.06｜GPA <span class="metric">3.68/4.0</span>｜专业排名 <span class="metric">4/132</span></p>
     <p>数学分析（91）、高等代数（88）、概率论与数理统计（97）、数据结构（90）、操作系统（98）、C++ 面向对象程序设计（94）。</p>
-  </div>
+  </article>
 </div>
 
 <span class="anchor" id="work-experience"></span>
