@@ -72,14 +72,11 @@ I am currently seeking opportunities in privacy-preserving machine learning. Con
 
 ### Xiaomi Corporation
 
-**Data R&D | Feb. 2025 - Jul. 2025**
+**Data R&D | Feb. 2025 - Jun. 2025**
 
-- **Workflow automation:** Refactored report-generation and SQL file-management processes. Built automated workflows with Shell scripts, the Feishu API, and large language models to reduce manual intervention, improve efficiency, and lower labor costs.
-- **LLM applications:** Built AI workflows for data analysis and intelligent customer service using Dify and retrieval-augmented generation (RAG), supporting business automation and application optimization.
-- **End-to-end data science:** Worked across data acquisition, cleaning, feature engineering, model training and evaluation, and production deployment.
-- **Text classification and semantic analysis:** Implemented Naive Bayes text classification and generated domain-specific word embeddings with Word2Vec to support similar-text retrieval.
-- **Knowledge base:** Led the design and implementation of a team knowledge-base system that organized technical documentation and workflows, improving onboarding, information retrieval, and knowledge reuse.
-- **UWB gesture-control application:** At Xiaomi's 48-hour hackathon, co-developed a smartphone gesture-control application for smart-home devices using ultra-wideband (UWB) technology. Built the backend service and trained, optimized, and deployed the core gesture-recognition model; the project received a **Special Award**.
+- **End-to-end data science:** Managed the full workflow from data acquisition, cleaning, and feature engineering to model training, evaluation, and production deployment. Cleaned, segmented by dimension, aggregated, and structured millions of daily user-browsing records, providing data support for lending operations and cost control.
+- **Text semantic analysis:** Used Word2Vec to create vector representations of a domain-specific text corpus, enabling similar-text retrieval and supporting semantic analysis for relevant business scenarios.
+- **Knowledge base development:** Led the design and implementation of a team knowledge base, systematically organizing technical documentation and business processes to improve onboarding, information retrieval, and knowledge reuse.
 
 <span class="anchor" id="honors"></span>
 ## 🏅 Honors
