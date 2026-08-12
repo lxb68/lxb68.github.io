@@ -202,6 +202,13 @@
     text-transform: uppercase;
   }
 
+  .author__contact-icon {
+    color: var(--profile-blue);
+    font-size: 1.1rem;
+    line-height: 1;
+    letter-spacing: normal;
+  }
+
   dd {
     margin: 0;
     overflow-wrap: anywhere;
@@ -220,6 +227,18 @@
       color: var(--profile-blue);
       text-decoration: underline;
     }
+  }
+}
+
+.author__contact-item--inline {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1.1rem minmax(0, 1fr);
+  column-gap: 0.55rem;
+
+  dt,
+  dd {
+    margin: 0;
   }
 }
 
