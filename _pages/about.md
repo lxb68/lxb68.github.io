@@ -47,7 +47,7 @@ redirect_from:
       <img class="education-card__logo" src="{{ '/images/中国科学院.png' | relative_url }}" alt="" style="width: 56px; height: 56px; object-fit: contain;">
       <div class="education-card__identity">
         <h3>中国科学院大学</h3>
-        <p class="education-card__degree">电子信息（计算机）</p>
+        <p class="education-card__degree">计算机技术</p>
       </div>
       <span class="education-card__level education-card__level--graduate">硕士研究生</span>
     </header>
